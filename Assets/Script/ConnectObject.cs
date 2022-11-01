@@ -11,45 +11,76 @@ public class ConnectObject : MonoBehaviour
     Vector3 end_point;
     Vector3 ScreenPoint;
     Vector3 offset;
-    GameObject ToolBar;
-    GameObject Canvas;
-    GraphicRaycaster m_Raycaster;
-    PointerEventData m_PointerEventData;
-    EventSystem m_EventSystem;
-
-    void DrawLine(Vector3 start, Vector3 end)
+    List<GameObject> myLineList;
+    GameObject line;
+    LineRenderer lr;
+    void Start()
     {
-        GameObject myLine = new GameObject();
-        myLine.transform.position = start;
-        myLine.AddComponent<LineRenderer>();
-        LineRenderer lr = myLine.GetComponent<LineRenderer>();
-        // Edit->ProjectSettings->Graphics 在Always Included Shaders中，更改size，并將所需用到的Shader拖入其中
-        lr.material = new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply")); 
-        lr.startColor = Color.red;
-        lr.endColor = Color.red;
-        lr.startWidth = 0.1f;
-        lr.endWidth = 0.1f;
+        myLineList = new List<GameObject>();
+        //Fetch the Event System from the Scene
+    }
+    void DrawLine(Vector3 start, Vector3 end, Color color)
+    {
+        //set the line position
+        lr.startColor = color;
+        lr.endColor = color;
         lr.SetPosition(0, start);
         lr.SetPosition(1, end);
-        GameObject.Destroy(myLine,0.1f);
     }
 
     void OnMouseDown()
     {
-        SpriteRenderer[] s_list = GetComponentsInChildren<SpriteRenderer>();
+        // create a line gameobject and get the LineRenderer
+        line = new GameObject();
+        line.AddComponent<LineRenderer>();
+        lr = line.GetComponent<LineRenderer>();
+        // Edit->ProjectSettings->Graphics 在Always Included Shaders中，更改size，并將所需用到的Shader拖入其中
+        lr.material = new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply"));
+        // set line renderer's setting
+        lr.startWidth = 0.1f;
+        lr.endWidth = 0.1f;
+        // get the object position
         transform.position = new Vector3(transform.position.x, transform.position.y);
         ScreenPoint = Camera.main.WorldToScreenPoint(transform.position);
         offset = transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
-        m_PointerEventData = new PointerEventData(m_EventSystem);
-        m_PointerEventData.position = Input.mousePosition;
+        // set start point position
         start_point = new Vector3(transform.position.x, transform.position.y);
+        line.transform.position = start_point;
+        // add the line into myLineList
+        myLineList.Add(line);
     }
 
     void OnMouseDrag()
     {
+        // get the screen 
         Vector3 CurScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y);
         Vector3 CurPosition = Camera.main.ScreenToWorldPoint(CurScreenPoint) + offset;
         end_point = new Vector3(CurPosition.x, CurPosition.y);
-        DrawLine(start_point, end_point);
+        // draw line from start point to end point
+        if(gameObject.tag == "negative")
+        {
+            DrawLine(start_point, end_point, Color.black);
+        }
+        else if(gameObject.tag == "positive")
+        {
+            DrawLine(start_point, end_point, Color.red);
+        }
+        
+    }
+
+    void OnMouseUp()
+    {
+        RaycastHit2D[] hits;
+        hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        if(hits.Length == 0)
+        {
+            myLineList.Remove(line);
+            Destroy(line);
+        }
+        foreach (RaycastHit2D hit in hits)
+        {
+            print("Hit:" + hit.transform.gameObject.name);
+        }
+        return;
     }
 }
