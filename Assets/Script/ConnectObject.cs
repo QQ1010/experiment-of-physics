@@ -12,11 +12,13 @@ public class ConnectObject : MonoBehaviour
     Vector3 ScreenPoint;
     Vector3 offset;
     List<GameObject> myLineList;
+    GameObject ToolbarManager;
     GameObject line;
     LineRenderer lr;
     void Start()
     {
         myLineList = new List<GameObject>();
+        ToolbarManager = GameObject.Find("Tool");
         //Fetch the Event System from the Scene
     }
     void DrawLine(Vector3 start, Vector3 end, Color color)
@@ -48,6 +50,7 @@ public class ConnectObject : MonoBehaviour
         line.transform.position = start_point;
         // add the line into myLineList
         myLineList.Add(line);
+        line.transform.SetParent(ToolbarManager.transform);
     }
 
     void OnMouseDrag()
@@ -80,6 +83,15 @@ public class ConnectObject : MonoBehaviour
         foreach (RaycastHit2D hit in hits)
         {
             print("Hit:" + hit.transform.gameObject.name);
+            end_point = new Vector3(hit.transform.position.x, hit.transform.position.y);
+        }
+        if (gameObject.tag == "negative")
+        {
+            DrawLine(start_point, end_point, Color.black);
+        }
+        else if (gameObject.tag == "positive")
+        {
+            DrawLine(start_point, end_point, Color.red);
         }
         return;
     }

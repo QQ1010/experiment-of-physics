@@ -15,13 +15,19 @@ public class ToolBar : MonoBehaviour
         GameObject parentObject = GameObject.Find("Tool");
 
         // Create
-       ToolbarManager.Add(
+        Instantiate(
+             targetObject,
+             parentObject.transform.position,
+             parentObject.transform.rotation,
+             parentObject.transform
+        );
+        /*ToolbarManager.Add(
            Instantiate(
             targetObject,
             parentObject.transform.position,
             parentObject.transform.rotation,
             parentObject.transform
-       ));
+       ));*/
     }
     public void CreateVoltmeter()
     {
@@ -32,13 +38,19 @@ public class ToolBar : MonoBehaviour
         GameObject parentObject = GameObject.Find("Tool");
 
         // Create
-        ToolbarManager.Add(
+        Instantiate(
+            targetObject,
+            parentObject.transform.position,
+            parentObject.transform.rotation,
+            parentObject.transform
+       );
+        /*ToolbarManager.Add(
            Instantiate(
             targetObject,
             parentObject.transform.position,
             parentObject.transform.rotation,
             parentObject.transform
-       ));
+       ));*/
     }
     public void CreateGaussmeter()
     {
@@ -49,13 +61,19 @@ public class ToolBar : MonoBehaviour
         GameObject parentObject = GameObject.Find("Tool");
 
         // Create
-        ToolbarManager.Add(
+        Instantiate(
+            targetObject,
+            parentObject.transform.position,
+            parentObject.transform.rotation,
+            parentObject.transform
+       );
+        /*ToolbarManager.Add(
            Instantiate(
             targetObject,
             parentObject.transform.position,
             parentObject.transform.rotation,
             parentObject.transform
-       ));
+       ));*/
     }
     public void CreateDCPower()
     {
@@ -66,13 +84,19 @@ public class ToolBar : MonoBehaviour
         GameObject parentObject = GameObject.Find("Tool");
 
         // Create
-        ToolbarManager.Add(
+        Instantiate(
+            targetObject,
+            parentObject.transform.position,
+            parentObject.transform.rotation,
+            parentObject.transform
+       );
+        /*ToolbarManager.Add(
            Instantiate(
             targetObject,
             parentObject.transform.position,
             parentObject.transform.rotation,
             parentObject.transform
-       ));
+       ));*/
     }
     public void CreateVariableResistor()
     {
@@ -83,13 +107,19 @@ public class ToolBar : MonoBehaviour
         GameObject parentObject = GameObject.Find("Tool");
 
         // Create
-        ToolbarManager.Add(
+        Instantiate(
+            targetObject,
+            parentObject.transform.position,
+            parentObject.transform.rotation,
+            parentObject.transform
+       );
+        /*ToolbarManager.Add(
            Instantiate(
             targetObject,
             parentObject.transform.position,
             parentObject.transform.rotation,
             parentObject.transform
-       ));
+       ));*/
     }
     public void CreateRuler()
     {
@@ -100,13 +130,19 @@ public class ToolBar : MonoBehaviour
         GameObject parentObject = GameObject.Find("Tool");
 
         // Create
-        ToolbarManager.Add(
+        Instantiate(
+            targetObject,
+            parentObject.transform.position,
+            parentObject.transform.rotation,
+            parentObject.transform
+       );
+        /*ToolbarManager.Add(
            Instantiate(
             targetObject,
             parentObject.transform.position,
             parentObject.transform.rotation,
             parentObject.transform
-       ));
+       ));*/
     }
     public void CreateWireA()
     {
@@ -117,13 +153,19 @@ public class ToolBar : MonoBehaviour
         GameObject parentObject = GameObject.Find("Tool");
 
         // Create
-        ToolbarManager.Add(
+        Instantiate(
+            targetObject,
+            parentObject.transform.position,
+            parentObject.transform.rotation,
+            parentObject.transform
+       );
+        /*ToolbarManager.Add(
            Instantiate(
             targetObject,
             parentObject.transform.position,
             parentObject.transform.rotation,
             parentObject.transform
-       ));
+       ));*/
     }
     public void CreateWireB()
     {
@@ -134,19 +176,28 @@ public class ToolBar : MonoBehaviour
         GameObject parentObject = GameObject.Find("Tool");
 
         // Create
-        ToolbarManager.Add(
+        Instantiate(
+            targetObject,
+            parentObject.transform.position,
+            parentObject.transform.rotation,
+            parentObject.transform
+       );
+        /*ToolbarManager.Add(
            Instantiate(
             targetObject,
             parentObject.transform.position,
             parentObject.transform.rotation,
             parentObject.transform
-       ));
+       ));*/
     }
     public void Reset()
     {
-        foreach (GameObject obj in ToolbarManager)
+        GameObject parentObject = GameObject.Find("Tool");
+        int nbChildren = parentObject.transform.childCount;
+
+        for (int i = nbChildren - 1; i >= 0; i--)
         {
-            Destroy(obj);
+            Destroy(parentObject.transform.GetChild(i).gameObject);
         }
     }
 }
