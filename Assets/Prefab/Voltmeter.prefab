@@ -167,7 +167,7 @@ MonoBehaviour:
   tool_type: 0
   postives: []
   negetives: []
-  voltage_text_: {fileID: 3933957537518079472}
+  voltage_text_: {fileID: 0}
   ampere_text_: {fileID: 0}
   resistance_text_: {fileID: 0}
   voltmeter_text: {fileID: 3933957537518079472}
