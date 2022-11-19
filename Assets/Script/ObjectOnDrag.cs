@@ -1,6 +1,7 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -13,6 +14,7 @@ public class ObjectOnDrag : MonoBehaviour
     // Queue<SpriteRenderer> LastOnFocusSpriteRenderers;
     GameObject ToolBar;
     GameObject Canvas;
+    public GameObject drag_target_;
     GraphicRaycaster m_Raycaster;
     PointerEventData m_PointerEventData;
     EventSystem m_EventSystem;
@@ -27,7 +29,7 @@ public class ObjectOnDrag : MonoBehaviour
     }
     public void OnMouseDown()
     {
-        SpriteRenderer[] s_list = GetComponentsInChildren<SpriteRenderer>();
+        SpriteRenderer[] s_list = drag_target_.GetComponentsInChildren<SpriteRenderer>();
         //Reset Lost Focuses Object
         // while (LastOnFocusSpriteRenderers.Count > 0)
         // {
@@ -44,11 +46,17 @@ public class ObjectOnDrag : MonoBehaviour
         //     s.sortingLayerName = "On Focus";
         //     LastOnFocusSpriteRenderers.Enqueue(s);
         // }
-        transform.position = new Vector3(transform.position.x, transform.position.y);
-        ScreenPoint = Camera.main.WorldToScreenPoint(transform.position);
-        offset = transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
+        drag_target_.transform.position = new Vector3(drag_target_.transform.position.x, drag_target_.transform.position.y);
+        ScreenPoint = Camera.main.WorldToScreenPoint(drag_target_.transform.position);
+        offset = drag_target_.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
         m_PointerEventData = new PointerEventData(m_EventSystem);
         m_PointerEventData.position = Input.mousePosition;
+        // Set line render start and end position
+        ConnectObject[] posAndneg = drag_target_.GetComponentsInChildren<ConnectObject>();
+        foreach(var o in posAndneg)
+        {
+            o.FixLine();
+        }
     }
     public void OnMouseDrag()
     {
@@ -56,7 +64,13 @@ public class ObjectOnDrag : MonoBehaviour
         Vector3 CurScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y);
         Vector3 CurPosition = Camera.main.ScreenToWorldPoint(CurScreenPoint) + offset;
         CurPosition.z = 0;
-        transform.position = CurPosition;
+        drag_target_.transform.position = CurPosition;
+        // Update lines on the object
+        ConnectObject[] posAndneg = drag_target_.GetComponentsInChildren<ConnectObject>();
+        foreach(var o in posAndneg)
+        {
+            o.UpdateConnection(o.transform.position);
+        }
     }
     public void OnMouseUp()
     {
