@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-
-public enum ToolType{
+public enum ToolType
+{
     Ammeter,
     Votmeter,
     PowerSupply,
@@ -22,8 +22,10 @@ public class ElectronicComponent : MonoBehaviour
     public float voltage
     {
         get { return voltage_; }
-        set {
-            if(voltage_text_) {
+        set
+        {
+            if (voltage_text_)
+            {
                 voltage_ = value;
                 voltage_text_.text = voltage_.ToString();
             }
@@ -32,8 +34,10 @@ public class ElectronicComponent : MonoBehaviour
     public float ampere
     {
         get { return ampere_; }
-        set {
-            if(voltage_text_) {
+        set
+        {
+            if (voltage_text_)
+            {
                 ampere_ = value;
                 ampere_text_.text = ampere_.ToString();
             }
@@ -42,8 +46,10 @@ public class ElectronicComponent : MonoBehaviour
     public float resistance
     {
         get { return resistance_; }
-        set {
-            if(voltage_text_) {
+        set
+        {
+            if (voltage_text_)
+            {
                 resistance_ = value;
                 resistance_text_.text = resistance_.ToString();
             }
@@ -58,7 +64,6 @@ public class ElectronicComponent : MonoBehaviour
     [SerializeField] TextMeshProUGUI voltage_text_;
     [SerializeField] TextMeshProUGUI ampere_text_;
     [SerializeField] TextMeshProUGUI resistance_text_;
-    
 
     public bool ConnectComponent(bool from, bool to, ElectronicComponent component) {
         if(component == null) return false;
@@ -104,5 +109,10 @@ public class ElectronicComponent : MonoBehaviour
             result = true;
         }
         return result;
+    }
+
+    public virtual bool CheckPlace()
+    {
+        return true;
     }
 }
