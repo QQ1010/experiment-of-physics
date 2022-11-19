@@ -118,25 +118,14 @@ public class ConnectObject : MonoBehaviour
         {
             print("Hit:" + hit.transform.gameObject.name);
             //print(hit.transform.tag);
-            if(gameObject.tag == "negative")
+            if(hit.transform.tag == "negative" || hit.transform.tag == "positive")
             {
-                if(hit.transform.tag == "negative")
-                {
-                    find = true;
-                    hit.transform.gameObject.GetComponentInChildren<ConnectObject>().Connect(line);
-                    end_point = new Vector3(hit.transform.position.x, hit.transform.position.y);
-                    break;
-                }
-            }
-            else if(gameObject.tag == "positive")
-            {
-                if(hit.transform.tag == "positive")
-                {
-                    find = true;
-                    hit.transform.gameObject.GetComponentInChildren<ConnectObject>().Connect(line);
-                    end_point = new Vector3(hit.transform.position.x, hit.transform.position.y);
-                    break;
-                }
+                find = true;
+                hit.transform.gameObject.GetComponentInChildren<ConnectObject>().Connect(line);
+                end_point = new Vector3(hit.transform.position.x, hit.transform.position.y);
+                gameObject.GetComponentInParent<ElectronicComponent>().
+                    ConnectComponent(gameObject.tag == "positive", hit.transform.tag == "positive", hit.transform.gameObject.GetComponentInParent<ElectronicComponent>());
+                
             }
         }
         if (gameObject.tag == "negative" & find)
