@@ -6,9 +6,25 @@ public class ToolBar : MonoBehaviour
 {
     public List<GameObject> ToolbarManager = new List<GameObject>();
     public List<GameObject> Tools;
+    
+    public void CreateObject(int index)
+    {
+        // Target
+        GameObject targetObject = Tools[index];
+        // Parent
+        GameObject parentObject = GameObject.Find("Tool");
+
+        // Create
+        Instantiate(
+             targetObject,
+             parentObject.transform.position,
+             parentObject.transform.rotation,
+             parentObject.transform
+        );
+    }
+
     public void CreateAmmeter()
     {
-
         // Target
         GameObject targetObject = Tools[0];
         // Parent
