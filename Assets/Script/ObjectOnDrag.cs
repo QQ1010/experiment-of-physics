@@ -25,7 +25,7 @@ public class ObjectOnDrag : MonoBehaviour
         // ToolBar = GameObject.FindGameObjectsWithTag("ToolBar")[0];
         // m_Raycaster = ToolBar.GetComponentInParent<GraphicRaycaster>();
         //Fetch the Event System from the Scene
-        m_EventSystem = GetComponent<EventSystem>();
+        // m_EventSystem = GetComponent<EventSystem>();
     }
     public void OnMouseDown()
     {

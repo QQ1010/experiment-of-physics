@@ -164,11 +164,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cde25199d59b0bb4fb2da33291788969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voltage: 0
-  ampere: 0
-  resistance: 0
+  tool_type: 0
   postives: []
   negetives: []
+  voltage_text_: {fileID: 3933957537518079472}
+  ampere_text_: {fileID: 0}
+  resistance_text_: {fileID: 0}
   voltmeter_text: {fileID: 3933957537518079472}
 --- !u!61 &2140491827625752725
 BoxCollider2D:

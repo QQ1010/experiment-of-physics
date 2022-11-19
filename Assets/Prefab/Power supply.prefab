@@ -64,14 +64,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050524ec59abf9741b65b17acc3f50a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voltage: 0
-  ampere: 0
-  resistance: 0
+  tool_type: 0
   postives: []
   negetives: []
+  voltage_text_: {fileID: 1350668749621436252}
+  ampere_text_: {fileID: 7071081856464607013}
+  resistance_text_: {fileID: 0}
   unit: 0.5
-  voltage_text: {fileID: 1350668749621436252}
-  ampere_text: {fileID: 7071081856464607013}
 --- !u!61 &8766457397397419221
 BoxCollider2D:
   m_ObjectHideFlags: 0

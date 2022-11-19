@@ -15,12 +15,13 @@ public class ToolBar : MonoBehaviour
         GameObject parentObject = GameObject.Find("Tool");
 
         // Create
-        Instantiate(
+        GameObject o = Instantiate(
              targetObject,
              parentObject.transform.position,
              parentObject.transform.rotation,
              parentObject.transform
         );
+        CircuitManager.instanse.tools.Add(o);
     }
 
     public void CreateAmmeter()

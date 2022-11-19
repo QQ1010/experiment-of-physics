@@ -70,7 +70,7 @@ public class ConnectObject : MonoBehaviour
         line = new GameObject();
         line.AddComponent<LineRenderer>();
         lr = line.GetComponent<LineRenderer>();
-        // Edit->ProjectSettings->Graphics 在Always Included Shaders中，更改size，并將所需用到的Shader拖入其中
+        // Edit->ProjectSettings->Graphics 嚙箭Always Included Shaders嚙踝蕭嚙璀嚙踝蕭嚙編ize嚙璀嚙罷嚙瞇嚙課需用到的Shader嚙踝蕭J嚙賭中
         lr.material = new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply"));
         // set line renderer's setting
         lr.startWidth = 0.1f;
@@ -142,10 +142,12 @@ public class ConnectObject : MonoBehaviour
         if (gameObject.tag == "negative" & find)
         {
             DrawLine(start_point, end_point, Color.black);
+            CircuitManager.CircuitUpdate();
         }
         else if (gameObject.tag == "positive" & find)
         {
             DrawLine(start_point, end_point, Color.red);
+            CircuitManager.CircuitUpdate();
         }
         else
         {

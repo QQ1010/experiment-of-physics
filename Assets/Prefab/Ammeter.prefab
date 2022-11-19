@@ -423,11 +423,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce533e03c3f3e24fb4ef177f098867d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voltage: 0
-  ampere: 0
-  resistance: 0
+  tool_type: 0
   postives: []
   negetives: []
+  voltage_text_: {fileID: 0}
+  ampere_text_: {fileID: 3200643824635320676}
+  resistance_text_: {fileID: 0}
   ammeter_text: {fileID: 3200643824635320676}
 --- !u!212 &430767163091705053
 SpriteRenderer:
