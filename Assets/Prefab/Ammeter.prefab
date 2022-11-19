@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Values
+  m_text: 0.0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -370,6 +370,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5621736451475900141}
   - component: {fileID: 4281179376490486157}
+  - component: {fileID: 1945563269811787875}
   - component: {fileID: 430767163091705053}
   - component: {fileID: 8470877758686943615}
   m_Layer: 0
@@ -410,6 +411,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drag_target_: {fileID: 5924191951147209541}
+--- !u!114 &1945563269811787875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5924191951147209541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ce533e03c3f3e24fb4ef177f098867d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voltage: 0
+  ampere: 0
+  resistance: 0
+  postives: []
+  negetives: []
+  ammeter_text: {fileID: 3200643824635320676}
 --- !u!212 &430767163091705053
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -110,8 +110,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5621736451475900141}
-  - component: {fileID: 2140491827625752725}
   - component: {fileID: 6748265623710847140}
+  - component: {fileID: 8411721268314986812}
+  - component: {fileID: 2140491827625752725}
   - component: {fileID: 5580707607684659955}
   m_Layer: 0
   m_Name: Voltmeter
@@ -138,6 +139,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6748265623710847140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5924191951147209541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf382444204b72d4db4c73dcde3bdd22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drag_target_: {fileID: 5924191951147209541}
+--- !u!114 &8411721268314986812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5924191951147209541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cde25199d59b0bb4fb2da33291788969, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voltage: 0
+  ampere: 0
+  resistance: 0
+  postives: []
+  negetives: []
+  voltmeter_text: {fileID: 3933957537518079472}
 --- !u!61 &2140491827625752725
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -164,19 +196,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.3151855, y: 5.4439697}
   m_EdgeRadius: 0
---- !u!114 &6748265623710847140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5924191951147209541}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf382444204b72d4db4c73dcde3bdd22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  drag_target_: {fileID: 5924191951147209541}
 --- !u!212 &5580707607684659955
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -419,7 +438,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Values
+  m_text: 0.0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
