@@ -5,19 +5,14 @@ using TMPro;
 
 public class VoltmeterManager : ElectronicComponent
 {
-    [SerializeField] TextMeshProUGUI voltmeter_text;
     void Start()
     {
-        voltage = 10;
-    }
-    public void AssignVoltmeterValue()
-    {
-        voltmeter_text.text = voltage.ToString();
+        tool_type = ToolType.Voltmeter;
     }
     public override bool CheckPlace()
     {
         return true;
-        // «ç¼Ë¬O¥¿½Tªº¦ì¸m ¦^¶Çtrue
-        // ÀË¬d¿ù»~¦ì¸m ¦^¶Ç false
+        // ï¿½ï¿½Ë¬Oï¿½ï¿½ï¿½Tï¿½ï¿½ï¿½ï¿½m ï¿½^ï¿½ï¿½true
+        // ï¿½Ë¬dï¿½ï¿½ï¿½~ï¿½ï¿½m ï¿½^ï¿½ï¿½ false
     }
 }

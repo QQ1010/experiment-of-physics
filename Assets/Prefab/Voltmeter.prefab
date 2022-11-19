@@ -167,10 +167,9 @@ MonoBehaviour:
   tool_type: 0
   postives: []
   negetives: []
-  voltage_text_: {fileID: 0}
+  voltage_text_: {fileID: 3933957537518079472}
   ampere_text_: {fileID: 0}
   resistance_text_: {fileID: 0}
-  voltmeter_text: {fileID: 3933957537518079472}
 --- !u!61 &2140491827625752725
 BoxCollider2D:
   m_ObjectHideFlags: 0

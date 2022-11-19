@@ -5,15 +5,14 @@ using TMPro;
 
 public class AmmeterManager : ElectronicComponent
 {
-    [SerializeField] TextMeshProUGUI ammeter_text;
-    public void AssignAmmeterValue()
+    void Start()
     {
-        ammeter_text.text = ampere.ToString();
+        tool_type = ToolType.Ammeter;
     }
     public override bool CheckPlace()
     {
         return true;
-        // «ç¼Ë¬O¥¿½Tªº¦ì¸m ¦^¶Çtrue
-        // ÀË¬d¿ù»~¦ì¸m ¦^¶Ç false
+        // ï¿½ï¿½Ë¬Oï¿½ï¿½ï¿½Tï¿½ï¿½ï¿½ï¿½m ï¿½^ï¿½ï¿½true
+        // ï¿½Ë¬dï¿½ï¿½ï¿½~ï¿½ï¿½m ï¿½^ï¿½ï¿½ false
     }
 }
