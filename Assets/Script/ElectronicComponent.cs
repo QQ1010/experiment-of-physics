@@ -91,26 +91,31 @@ public class ElectronicComponent : MonoBehaviour
         }
         return true;
     }
-    public bool DisconnectComponent(ElectronicComponent component) {
+    public bool DisconnectComponent(bool from, bool to, ElectronicComponent component)
+    {
         if (component == null) return false;
-        bool result = false;
-        if (positives.Exists(x => x == component)) {
+
+        if (from && positives.Exists(x => x == component))
+        {
             positives.Remove(component);
-            result = true;
         }
-        if (negetives.Exists(x => x == component)) {
+        else return false;
+        if (!from && negetives.Exists(x => x == component))
+        {
             negetives.Remove(component);
-            result = true;
         }
-        if (component.positives.Exists(x => x == this)) {
+        else return false;
+        if (to && component.positives.Exists(x => x == this))
+        {
             component.positives.Remove(this);
-            result = true;
         }
-        if(component.negetives.Exists(x => x == this)) {
+        else return false;
+        if (!to && component.negetives.Exists(x => x == this))
+        {
             component.negetives.Remove(this);
-            result = true;
         }
-        return result;
+        else return false;
+        return true;
     }
 
     public virtual bool CheckPlace()

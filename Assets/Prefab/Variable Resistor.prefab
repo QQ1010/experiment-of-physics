@@ -260,8 +260,8 @@ GameObject:
   - component: {fileID: 5621736451475900141}
   - component: {fileID: 7891510522937693780}
   - component: {fileID: 5781009065504654015}
-  - component: {fileID: 7086712152967024286}
   - component: {fileID: 3797456816608483244}
+  - component: {fileID: 7086712152967024286}
   m_Layer: 0
   m_Name: Variable Resistor
   m_TagString: Untagged
@@ -326,6 +326,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drag_target_: {fileID: 5924191951147209541}
+--- !u!114 &3797456816608483244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5924191951147209541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e8eceaccee525e4aa07d9c2d8428220, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tool_type: 3
+  positives: []
+  negetives: []
+  voltage_text_: {fileID: 0}
+  ampere_text_: {fileID: 0}
+  resistance_text_: {fileID: 0}
+  max_resistance: 10.1
+  min_resistance: 0.1
 --- !u!212 &7086712152967024286
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -378,25 +398,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3797456816608483244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5924191951147209541}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e8eceaccee525e4aa07d9c2d8428220, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tool_type: 0
-  postives: []
-  negetives: []
-  voltage_text_: {fileID: 0}
-  ampere_text_: {fileID: 0}
-  resistance_text_: {fileID: 0}
-  draw_bar: {fileID: 3794387523612395159}
 --- !u!1 &6374897990540130063
 GameObject:
   m_ObjectHideFlags: 0

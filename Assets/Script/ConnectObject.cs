@@ -53,7 +53,7 @@ public class ConnectObject : MonoBehaviour
     }
     public void UpdateConnection(Vector3 newpos)
     {
-        foreach(GameObject line_object in myLineList)
+        foreach (GameObject line_object in myLineList)
         {
             LineRenderer line = line_object.GetComponent<LineRenderer>();
             line.SetPosition(0, newpos);
@@ -109,7 +109,7 @@ public class ConnectObject : MonoBehaviour
         RaycastHit2D[] hits;
         int index = 0;
         bool find = false;           // positive to positive and negative to negative
-        bool connect = false;
+        bool connect;
         hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
         if(hits.Length == 0)         // hit nothing
         {
@@ -119,10 +119,14 @@ public class ConnectObject : MonoBehaviour
         foreach (RaycastHit2D hit in hits)
         {
             //print("Hit:" + hit.transform.gameObject.name);
-            index += 1;
             //print(hit.transform.tag);
             if(hit.transform.tag == "negative" || hit.transform.tag == "positive")
             {
+                // connect to itself
+                if(hit.transform.gameObject.GetComponentInParent<ElectronicComponent>().tool_type == gameObject.GetComponentInParent<ElectronicComponent>().tool_type)
+                {
+                    break;
+                }
                 find = true;
                 hit.transform.gameObject.GetComponentInChildren<ConnectObject>().Connect(line);
                 end_point = new Vector3(hit.transform.position.x, hit.transform.position.y);
@@ -130,18 +134,41 @@ public class ConnectObject : MonoBehaviour
                     ConnectComponent(gameObject.tag == "positive", hit.transform.tag == "positive", hit.transform.gameObject.GetComponentInParent<ElectronicComponent>());
                 break;
             }
+            index += 1;
         }
+        // check connect whether correctly
         print(gameObject.GetComponentInParent<ElectronicComponent>().tool_type);
-        if(gameObject.GetComponentInParent<ElectronicComponent>().tool_type == ToolType.Ammeter)
+        switch (gameObject.GetComponentInParent<ElectronicComponent>().tool_type)
         {
-            connect = gameObject.GetComponentInParent<AmmeterManager>().CheckPlace();
+            case ToolType.Ammeter:
+                connect = gameObject.GetComponentInParent<AmmeterManager>().CheckPlace();
+                break;
+            case ToolType.Voltmeter:
+                connect = gameObject.GetComponentInParent<VoltmeterManager>().CheckPlace();
+                break;
+            case ToolType.Resistor:
+                connect = gameObject.GetComponentInParent<ResistorManager>().CheckPlace();
+                break;
+            case ToolType.WireA:
+                connect = gameObject.GetComponentInParent<WireAManager>().CheckPlace();
+                break;
+            case ToolType.WireB:
+                connect = gameObject.GetComponentInParent<WireBManager>().CheckPlace();
+                break;
+            case ToolType.PowerSupply:
+                connect = gameObject.GetComponentInParent<PowerSupplyMannager>().CheckPlace();
+                break;
+            default:
+                connect = false;
+                break;
         }
-        //connect = true;
-        //if (find & !connect)
-        //{
-        //    gameObject.GetComponentInParent<ElectronicComponent>().
-        //            DisconnectComponent(hits[index].transform.gameObject.GetComponentInParent<ElectronicComponent>());
-        //}
+        print("connect:" + connect);
+        if (find & !connect)
+        {
+            print("disconnect");
+            print(gameObject.GetComponentInParent<ElectronicComponent>().
+                    DisconnectComponent(gameObject.tag == "positive", hits[index].transform.tag == "positive", hits[index].transform.gameObject.GetComponentInParent<ElectronicComponent>()));
+        }
         find &= connect;
         if (gameObject.tag == "negative" & find)
         {

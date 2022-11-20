@@ -282,6 +282,7 @@ GameObject:
   - component: {fileID: 6024907712457375400}
   - component: {fileID: -5779422250360748432}
   - component: {fileID: 2066169400946346313}
+  - component: {fileID: 111410063538083662}
   m_Layer: 0
   m_Name: Gaussmeter
   m_TagString: Untagged
@@ -298,7 +299,7 @@ Transform:
   m_GameObject: {fileID: 5924191951147209541}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 960, y: 540, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5022825619431659155}
@@ -396,6 +397,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &111410063538083662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5924191951147209541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b921f894db5316f49ae45bb473a8132d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tool_type: 4
+  positives: []
+  negetives: []
+  voltage_text_: {fileID: 0}
+  ampere_text_: {fileID: 0}
+  resistance_text_: {fileID: 0}
+  gauss_text_: {fileID: 784481489141406146}
 --- !u!1 &6683020366745155930
 GameObject:
   m_ObjectHideFlags: 0
