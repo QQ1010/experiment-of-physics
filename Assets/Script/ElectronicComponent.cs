@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public enum ToolType
 {
     Ammeter,
-    Votmeter,
+    Voltmeter,
     PowerSupply,
     Resistor,
     Gaussmeter,
@@ -27,7 +28,7 @@ public class ElectronicComponent : MonoBehaviour
             if (voltage_text_)
             {
                 voltage_ = value;
-                voltage_text_.text = voltage_.ToString();
+                voltage_text_.text = Math.Round(voltage_,3).ToString();
             }
         }
     }
@@ -39,7 +40,7 @@ public class ElectronicComponent : MonoBehaviour
             if (voltage_text_)
             {
                 ampere_ = value;
-                ampere_text_.text = ampere_.ToString();
+                ampere_text_.text = Math.Round(ampere_,3).ToString();
             }
         }
     }
@@ -55,7 +56,7 @@ public class ElectronicComponent : MonoBehaviour
             }
         }
     }
-    public List<ElectronicComponent> postives = new List<ElectronicComponent>();
+    public List<ElectronicComponent> positives = new List<ElectronicComponent>();
     public List<ElectronicComponent> negetives = new List<ElectronicComponent>();
 
     private float voltage_;
@@ -68,9 +69,9 @@ public class ElectronicComponent : MonoBehaviour
     public bool ConnectComponent(bool from, bool to, ElectronicComponent component) {
         if(component == null) return false;
         if (from) {
-            if(postives.Contains(component))
+            if(positives.Contains(component))
                 return false;
-            postives.Add(component);
+            positives.Add(component);
         }
         else {
             if(negetives.Contains(component))
@@ -78,9 +79,9 @@ public class ElectronicComponent : MonoBehaviour
             negetives.Add(component);
         }
         if (to) {
-            if(component.postives.Contains(this))
+            if(component.positives.Contains(this))
                 return false;
-            component.postives.Add(this);
+            component.positives.Add(this);
         }
         else {
             if(component.negetives.Contains(this))
@@ -92,16 +93,16 @@ public class ElectronicComponent : MonoBehaviour
     public bool DisconnectComponent(ElectronicComponent component) {
         if (component == null) return false;
         bool result = false;
-        if (postives.Exists(x => x == component)) {
-            postives.Remove(component);
+        if (positives.Exists(x => x == component)) {
+            positives.Remove(component);
             result = true;
         }
         if (negetives.Exists(x => x == component)) {
             negetives.Remove(component);
             result = true;
         }
-        if (component.postives.Exists(x => x == this)) {
-            component.postives.Remove(this);
+        if (component.positives.Exists(x => x == this)) {
+            component.positives.Remove(this);
             result = true;
         }
         if(component.negetives.Exists(x => x == this)) {

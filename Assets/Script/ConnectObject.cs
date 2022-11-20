@@ -107,7 +107,9 @@ public class ConnectObject : MonoBehaviour
     void OnMouseUp()
     {
         RaycastHit2D[] hits;
+        int index = 0;
         bool find = false;           // positive to positive and negative to negative
+        bool connect = false;
         hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
         if(hits.Length == 0)         // hit nothing
         {
@@ -116,7 +118,8 @@ public class ConnectObject : MonoBehaviour
         }
         foreach (RaycastHit2D hit in hits)
         {
-            print("Hit:" + hit.transform.gameObject.name);
+            //print("Hit:" + hit.transform.gameObject.name);
+            index += 1;
             //print(hit.transform.tag);
             if(hit.transform.tag == "negative" || hit.transform.tag == "positive")
             {
@@ -125,9 +128,21 @@ public class ConnectObject : MonoBehaviour
                 end_point = new Vector3(hit.transform.position.x, hit.transform.position.y);
                 gameObject.GetComponentInParent<ElectronicComponent>().
                     ConnectComponent(gameObject.tag == "positive", hit.transform.tag == "positive", hit.transform.gameObject.GetComponentInParent<ElectronicComponent>());
-                
+                break;
             }
         }
+        print(gameObject.GetComponentInParent<ElectronicComponent>().tool_type);
+        if(gameObject.GetComponentInParent<ElectronicComponent>().tool_type == ToolType.Ammeter)
+        {
+            connect = gameObject.GetComponentInParent<AmmeterManager>().CheckPlace();
+        }
+        //connect = true;
+        //if (find & !connect)
+        //{
+        //    gameObject.GetComponentInParent<ElectronicComponent>().
+        //            DisconnectComponent(hits[index].transform.gameObject.GetComponentInParent<ElectronicComponent>());
+        //}
+        find &= connect;
         if (gameObject.tag == "negative" & find)
         {
             DrawLine(start_point, end_point, Color.black);

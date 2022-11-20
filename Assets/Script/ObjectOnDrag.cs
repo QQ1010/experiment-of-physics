@@ -91,6 +91,7 @@ public class ObjectOnDrag : MonoBehaviour
             //Debug.Log("Hit " + result.gameObject.tag);
             if (result.gameObject.tag == "ToolBar")
             {
+                CircuitManager.instanse.tools.Remove(gameObject);
                 Destroy(gameObject);
                 // LastOnFocusSpriteRenderers.Clear();
                 break;

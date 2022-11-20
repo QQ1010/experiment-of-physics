@@ -33,7 +33,7 @@ public class CircuitManager : MonoBehaviour
         // find the circuit with dfs
         Stack<ElectronicComponent> stack = new Stack<ElectronicComponent>();
         stack.Push(power_);
-        foreach(var o in power_.postives)
+        foreach(var o in power_.positives)
         {
 
         }
@@ -42,17 +42,17 @@ public class CircuitManager : MonoBehaviour
             ElectronicComponent node = stack.Pop();
             if(node.tool_type == ToolType.PowerSupply) {
 
-                node.postives.ForEach( child => stack.Push(child) );
-                node.postives.ForEach( child => print(child.tool_type) );
+                node.positives.ForEach( child => stack.Push(child) );
+                //node.positives.ForEach( child => print(child.tool_type) );
                 continue;
             }
-            print(node.tool_type);
+            //print(node.tool_type);
             switch(node.tool_type)
             {
                 case ToolType.Ammeter:
                     ammeter_ = node.GetComponent<ElectronicComponent>();
                     break;
-                case ToolType.Votmeter:
+                case ToolType.Voltmeter:
                     votmeter_ = node.GetComponent<ElectronicComponent>();
                     break;
                 case ToolType.WireA:
@@ -80,15 +80,17 @@ public class CircuitManager : MonoBehaviour
         {
             votmeter_.voltage = cm.total_voltage_;
         }
-        if(ammeter_)
-        {
-            ammeter_.ampere = cm.total_voltage_ * resistor_.resistance;
-        }
-        if(resistor_)
-        {
-            resistor_.voltage = cm.total_voltage_;
-            resistor_.ampere = cm.total_ampere_;
-        }
+        
+        //if(ammeter_)
+        //{
+        //    ammeter_.ampere = cm.total_voltage_ * resistor_.resistance;
+        //}
+        //if(resistor_)
+        //{
+        //    resistor_.voltage = cm.total_voltage_;
+        //    resistor_.ampere = cm.total_ampere_;
+        //}
+        
     }
 }
 

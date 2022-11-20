@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class VoltmeterManager : ElectronicComponent
+public class GaussmeterManager : ElectronicComponent
 {
-    private void Start()
+    void Start()
     {
-        tool_type = ToolType.Voltmeter;
+        tool_type = ToolType.Gaussmeter;
     }
     public override bool CheckPlace()
     {
