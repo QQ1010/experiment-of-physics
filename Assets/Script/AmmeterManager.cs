@@ -5,13 +5,13 @@ using TMPro;
 
 public class AmmeterManager : ElectronicComponent
 {
-    private void Start()
+    void Start()
     {
         tool_type = ToolType.Ammeter;
     }
     public override bool CheckPlace()
     {
-        if(positives.Count > 1 || negetives.Count > 1)       // ÀË¬d¦êÁp
+        if(positives.Count > 1 || negetives.Count > 1)       // ï¿½Ë¬dï¿½ï¿½ï¿½p
         {
             return false;
         }
@@ -35,7 +35,7 @@ public class AmmeterManager : ElectronicComponent
         }
         
         return true;
-        // «ç¼Ë¬O¥¿½Tªº¦ì¸m ¦^¶Çtrue
-        // ÀË¬d¿ù»~¦ì¸m ¦^¶Ç false
+        // ï¿½ï¿½Ë¬Oï¿½ï¿½ï¿½Tï¿½ï¿½ï¿½ï¿½m ï¿½^ï¿½ï¿½true
+        // ï¿½Ë¬dï¿½ï¿½ï¿½~ï¿½ï¿½m ï¿½^ï¿½ï¿½ false
     }
 }

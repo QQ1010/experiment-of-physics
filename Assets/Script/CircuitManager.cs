@@ -15,7 +15,34 @@ public class CircuitManager : MonoBehaviour
     {
         CircuitManager.instanse = this;
     }
-
+    private static bool FindPath(ElectronicComponent node, Dictionary<ElectronicComponent, bool> visisted, List<ElectronicComponent> in_circuit) 
+    {
+        if(visisted.ContainsKey(node) && visisted[node]) return node.tool_type == ToolType.PowerSupply;
+        visisted.Add(node, true);
+        bool to_power = false;
+        if(node.tool_type == ToolType.PowerSupply)
+        {
+            foreach(ElectronicComponent child in node.positives)
+            {
+                to_power |= FindPath(child, visisted, in_circuit);
+                if(to_power)
+                    in_circuit.Add(child);
+                
+            }
+        }
+        else
+        {
+            foreach(ElectronicComponent child in node.negetives)
+            {
+                to_power |= FindPath(child, visisted, in_circuit);
+                ElectronicComponent to_add = to_power ? child : null;
+                if(to_power)
+                    in_circuit.Add(child);
+            }
+        }
+        visisted.Remove(node);
+        return to_power;
+    }
     public static void CircuitUpdate()
     {
         CircuitManager cm = CircuitManager.instanse;
@@ -25,72 +52,60 @@ public class CircuitManager : MonoBehaviour
         ElectronicComponent resistor_ = null;
         ElectronicComponent wireA_ = null;
         ElectronicComponent wireB_ = null;
-        power_ = cm.tools.Find( obj => obj.GetComponent<ElectronicComponent>().tool_type == ToolType.PowerSupply ).GetComponent<ElectronicComponent>();
+        power_ = cm.tools.Find(obj => obj.GetComponent<ElectronicComponent>().tool_type == ToolType.PowerSupply).GetComponent<ElectronicComponent>();
 
-        if(power_ == null)
+        if (power_ == null)
             return;
 
         // find the circuit with dfs
-        Stack<ElectronicComponent> stack = new Stack<ElectronicComponent>();
-        stack.Push(power_);
-        foreach(var o in power_.positives)
+        Dictionary<ElectronicComponent, bool> visited = new Dictionary<ElectronicComponent, bool>();
+        List<ElectronicComponent> in_circuit = new List<ElectronicComponent>();
+        FindPath(power_, visited, in_circuit);
+        foreach(ElectronicComponent component in in_circuit)
         {
-
-        }
-        while(stack.Count > 0)
-        {
-            ElectronicComponent node = stack.Pop();
-            if(node.tool_type == ToolType.PowerSupply) {
-
-                node.positives.ForEach( child => stack.Push(child) );
-                //node.positives.ForEach( child => print(child.tool_type) );
-                continue;
-            }
-            //print(node.tool_type);
-            switch(node.tool_type)
+            print(component.name);
+            switch (component.tool_type)
             {
                 case ToolType.Ammeter:
-                    ammeter_ = node.GetComponent<ElectronicComponent>();
+                    ammeter_ = component;
                     break;
                 case ToolType.Voltmeter:
-                    votmeter_ = node.GetComponent<ElectronicComponent>();
+                    votmeter_ = component;
                     break;
                 case ToolType.WireA:
-                    wireA_ = node.GetComponent<ElectronicComponent>();
+                    wireA_ = component;
                     break;
                 case ToolType.WireB:
-                    wireB_ = node.GetComponent<ElectronicComponent>();
+                    wireB_ = component;
                     break;
                 case ToolType.PowerSupply:
-                    power_ = node.GetComponent<ElectronicComponent>();
+                    power_ = component;
                     break;
                 case ToolType.Resistor:
-                    resistor_ = node.GetComponent<ElectronicComponent>();
+                    resistor_ = component;
                     break;
                 default:
                     break;
             }
-        } 
-        print(cm.total_voltage_);
+        }
 
 
         cm.total_voltage_ = power_.voltage * Random.Range(cm.coefficient - cm.offset, cm.coefficient + cm.offset);
-        cm.total_ampere_ = power_.voltage * Random.Range(cm.coefficient - cm.offset, cm.coefficient + cm.offset);
-        if(votmeter_)
+        if (resistor_)
+        {
+            resistor_.voltage = cm.total_voltage_;
+            resistor_.ampere = cm.total_voltage_ / resistor_.resistance;
+            cm.total_ampere_ = resistor_.ampere;
+        }
+        if (votmeter_)
         {
             votmeter_.voltage = cm.total_voltage_;
         }
-        
-        //if(ammeter_)
-        //{
-        //    ammeter_.ampere = cm.total_voltage_ * resistor_.resistance;
-        //}
-        //if(resistor_)
-        //{
-        //    resistor_.voltage = cm.total_voltage_;
-        //    resistor_.ampere = cm.total_ampere_;
-        //}
-        
+        if (ammeter_)
+        {
+            ammeter_.ampere = cm.total_ampere_;
+        }
+        power_.ampere = cm.total_ampere_;
     }
 }
 

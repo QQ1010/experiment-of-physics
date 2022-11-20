@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,9 +26,9 @@ public class ElectronicComponent : MonoBehaviour
         get { return voltage_; }
         set
         {
+            voltage_ = value;
             if (voltage_text_)
             {
-                voltage_ = value;
                 voltage_text_.text = Math.Round(voltage_,3).ToString();
             }
         }
@@ -37,9 +38,9 @@ public class ElectronicComponent : MonoBehaviour
         get { return ampere_; }
         set
         {
-            if (voltage_text_)
+            ampere_ = value;
+            if (ampere_text_)
             {
-                ampere_ = value;
                 ampere_text_.text = Math.Round(ampere_,3).ToString();
             }
         }
@@ -49,10 +50,10 @@ public class ElectronicComponent : MonoBehaviour
         get { return resistance_; }
         set
         {
+            resistance_ = value;
             if (voltage_text_)
             {
-                resistance_ = value;
-                resistance_text_.text = resistance_.ToString();
+                resistance_text_.text = Math.Round(resistance_,3).ToString();
             }
         }
     }
