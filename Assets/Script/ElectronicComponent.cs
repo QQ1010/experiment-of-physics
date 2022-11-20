@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System;
 
 public enum ToolType
 {
@@ -29,7 +28,7 @@ public class ElectronicComponent : MonoBehaviour
             voltage_ = value;
             if (voltage_text_)
             {
-                voltage_text_.text = Math.Round(voltage_,3).ToString();
+                voltage_text_.text = Math.Round(voltage_, 3).ToString();
             }
         }
     }
@@ -41,7 +40,7 @@ public class ElectronicComponent : MonoBehaviour
             ampere_ = value;
             if (ampere_text_)
             {
-                ampere_text_.text = Math.Round(ampere_,3).ToString();
+                ampere_text_.text = Math.Round(ampere_, 3).ToString();
             }
         }
     }
@@ -53,7 +52,7 @@ public class ElectronicComponent : MonoBehaviour
             resistance_ = value;
             if (voltage_text_)
             {
-                resistance_text_.text = Math.Round(resistance_,3).ToString();
+                resistance_text_.text = Math.Round(resistance_, 3).ToString();
             }
         }
     }
@@ -67,50 +66,60 @@ public class ElectronicComponent : MonoBehaviour
     [SerializeField] TextMeshProUGUI ampere_text_;
     [SerializeField] TextMeshProUGUI resistance_text_;
 
-    public bool ConnectComponent(bool from, bool to, ElectronicComponent component) {
-        if(component == null) return false;
-        if (from) {
-            if(positives.Contains(component))
+    public bool ConnectComponent(bool from, bool to, ElectronicComponent component)
+    {
+        if (component == null) return false;
+        if (from)
+        {
+            if (positives.Contains(component))
                 return false;
             positives.Add(component);
         }
-        else {
-            if(negetives.Contains(component))
+        else
+        {
+            if (negetives.Contains(component))
                 return false;
             negetives.Add(component);
         }
-        if (to) {
-            if(component.positives.Contains(this))
+        if (to)
+        {
+            if (component.positives.Contains(this))
                 return false;
             component.positives.Add(this);
         }
-        else {
-            if(component.negetives.Contains(this))
+        else
+        {
+            if (component.negetives.Contains(this))
                 return false;
             component.negetives.Add(this);
         }
         return true;
     }
-    public bool DisconnectComponent(ElectronicComponent component) {
+    public bool DisconnectComponent(bool from, bool to, ElectronicComponent component)
+    {
         if (component == null) return false;
-        bool result = false;
-        if (positives.Exists(x => x == component)) {
+
+        if (from && positives.Exists(x => x == component))
+        {
             positives.Remove(component);
-            result = true;
         }
-        if (negetives.Exists(x => x == component)) {
+        else return false;
+        if (!from && negetives.Exists(x => x == component))
+        {
             negetives.Remove(component);
-            result = true;
         }
-        if (component.positives.Exists(x => x == this)) {
+        else return false;
+        if (to && component.positives.Exists(x => x == this))
+        {
             component.positives.Remove(this);
-            result = true;
         }
-        if(component.negetives.Exists(x => x == this)) {
+        else return false;
+        if (!to && component.negetives.Exists(x => x == this))
+        {
             component.negetives.Remove(this);
-            result = true;
         }
-        return result;
+        else return false;
+        return true;
     }
 
     public virtual bool CheckPlace()
