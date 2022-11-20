@@ -23,6 +23,7 @@ public class ToolBar : MonoBehaviour
         );
         CircuitManager.instanse.tools.Add(o);
     }
+
     public void Reset()
     {
         GameObject parentObject = GameObject.Find("Tool");
