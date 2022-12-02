@@ -99,8 +99,7 @@ public class ElectronicComponent : MonoBehaviour
         {
             positives.Remove(component);
         }
-        else return false;
-        if (!from && negetives.Exists(x => x == component))
+        else if (!from && negetives.Exists(x => x == component))
         {
             negetives.Remove(component);
         }
@@ -109,8 +108,7 @@ public class ElectronicComponent : MonoBehaviour
         {
             component.positives.Remove(this);
         }
-        else return false;
-        if (!to && component.negetives.Exists(x => x == this))
+        else if (!to && component.negetives.Exists(x => x == this))
         {
             component.negetives.Remove(this);
         }

@@ -43,10 +43,10 @@ public class PowerSupplyMannager : ElectronicComponent
                         }
                         break;
                     case ToolType.Resistor:
-                        // PS pos to R pos => false
-                        foreach(ElectronicComponent R_pos in pos.positives)
+                        // PS pos to R neg => false
+                        foreach(ElectronicComponent R_neg in pos.negetives)
                         {
-                            if (R_pos.tool_type == ToolType.PowerSupply) return false;
+                            if (R_neg.tool_type == ToolType.PowerSupply) return false;
                         }
                         break;
                     case ToolType.Ruler:
@@ -84,10 +84,10 @@ public class PowerSupplyMannager : ElectronicComponent
                         }
                         break;
                     case ToolType.Resistor:
-                        // PS neg to R neg => false
-                        foreach (ElectronicComponent R_neg in neg.negetives)
+                        // PS neg to R pos => false
+                        foreach (ElectronicComponent R_pos in neg.positives)
                         {
-                            if (R_neg.tool_type == ToolType.PowerSupply) return false;
+                            if (R_pos.tool_type == ToolType.PowerSupply) return false;
                         }
                         break;
                     case ToolType.Ruler:

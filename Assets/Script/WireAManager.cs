@@ -4,10 +4,24 @@ using UnityEngine;
 
 public class WireAManager : ElectronicComponent
 {
+    [SerializeField] private float resistance_;
     void Start()
     {
-        tool_type = ToolType.WireA;
-        // TODO: modify different materials shoulld have different resister
+        //tool_type = ToolType.WireA;
+        resistance = resistance_;
+    }
+    // WRITE A ONDRAG call circuit update
+    public void OnMouseDrag()
+    {
+        CircuitManager cm = CircuitManager.instanse;
+        GameObject gaussmeter_o;
+        ElectronicComponent gaussmeter = null;
+        gaussmeter_o = cm.tools.Find(obj => obj.GetComponent<ElectronicComponent>().tool_type == ToolType.Gaussmeter);
+        if (gaussmeter_o != null)
+        {
+            gaussmeter = gaussmeter_o.GetComponent<ElectronicComponent>();
+            gaussmeter.gameObject.GetComponent<GaussmeterManager>().CaculateGauss();
+        }
     }
     public override bool CheckPlace()
     {

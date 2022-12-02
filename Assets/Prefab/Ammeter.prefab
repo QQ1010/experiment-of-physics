@@ -424,7 +424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tool_type: 0
-  postives: []
+  positives: []
   negetives: []
   voltage_text_: {fileID: 0}
   ampere_text_: {fileID: 3200643824635320676}

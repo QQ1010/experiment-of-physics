@@ -138,6 +138,7 @@ public class ConnectObject : MonoBehaviour
         }
         // check connect whether correctly
         print(gameObject.GetComponentInParent<ElectronicComponent>().tool_type);
+        //connect = true;
         switch (gameObject.GetComponentInParent<ElectronicComponent>().tool_type)
         {
             case ToolType.Ammeter:

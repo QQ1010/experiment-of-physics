@@ -52,6 +52,7 @@ public class CircuitManager : MonoBehaviour
         ElectronicComponent resistor_ = null;
         ElectronicComponent wireA_ = null;
         ElectronicComponent wireB_ = null;
+        ElectronicComponent gaussmeter = null;
         power_ = cm.tools.Find(obj => obj.GetComponent<ElectronicComponent>().tool_type == ToolType.PowerSupply).GetComponent<ElectronicComponent>();
 
         if (power_ == null)
@@ -61,7 +62,7 @@ public class CircuitManager : MonoBehaviour
         Dictionary<ElectronicComponent, bool> visited = new Dictionary<ElectronicComponent, bool>();
         List<ElectronicComponent> in_circuit = new List<ElectronicComponent>();
         FindPath(power_, visited, in_circuit);
-        foreach(ElectronicComponent component in in_circuit)
+        foreach (ElectronicComponent component in in_circuit)
         {
             print(component.name);
             switch (component.tool_type)
@@ -105,7 +106,23 @@ public class CircuitManager : MonoBehaviour
         {
             ammeter_.ampere = cm.total_ampere_;
         }
+        if (wireA_)
+        {
+            wireA_.ampere = cm.total_ampere_- wireA_.resistance;
+        }
+        if (wireB_)
+        {
+            wireB_.ampere = cm.total_ampere_ - wireB_.resistance;
+        }
         power_.ampere = cm.total_ampere_;
+        GameObject gaussmeter_o;
+        gaussmeter_o = cm.tools.Find(obj => obj.GetComponent<ElectronicComponent>().tool_type == ToolType.Gaussmeter);
+        if (gaussmeter_o != null)
+        {
+            gaussmeter = gaussmeter_o.GetComponent<ElectronicComponent>();
+            gaussmeter.gameObject.GetComponent<GaussmeterManager>().CaculateGauss();
+        }
+        
     }
 }
 

@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.195, y: 1.3257}
-  m_SizeDelta: {x: 0.7961, y: 0.59178}
+  m_AnchoredPosition: {x: -1.0148, y: 0.12}
+  m_SizeDelta: {x: 0.8065, y: 0.5918}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6163972413082693658
 CanvasRenderer:
@@ -170,7 +170,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.289, y: 1.3257}
+  m_AnchoredPosition: {x: -0.438, y: 0.12}
   m_SizeDelta: {x: 0.412, y: 0.5918}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7553509024578768992
@@ -228,8 +228,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.3
-  m_fontSizeBase: 0.3
+  m_fontSize: 0.21
+  m_fontSizeBase: 0.21
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -299,7 +299,7 @@ Transform:
   m_GameObject: {fileID: 5924191951147209541}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 960, y: 540, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5022825619431659155}
@@ -332,18 +332,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.010681152, y: 1.7086182}
+  m_Offset: {x: -1.0187988, y: -0.016540527}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.5390625, y: 7.4804688}
+    oldSize: {x: 6.5234375, y: 2.5390625}
     newSize: {x: 2.5390625, y: 7.4804688}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.4310303, y: 4.032959}
+  m_Size: {x: 4.4472656, y: 2.453247}
   m_EdgeRadius: 0
 --- !u!212 &2066169400946346313
 SpriteRenderer:
@@ -386,7 +386,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c49f9e99944dd7a46adcd9d2be16732c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c6bb5e646f77461419ce3fc16590d6db, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -16,7 +16,7 @@ public class ResistorManager : ElectronicComponent
     public override bool CheckPlace()
     {
         if(positives.Count > 2 || negetives.Count > 2) return false;
-        //R pos to PS pos => false
+        //R pos to PS neg => false
         if (positives.Count >= 1)
         {
             foreach (ElectronicComponent pos in positives)
@@ -24,18 +24,18 @@ public class ResistorManager : ElectronicComponent
                 if (pos.tool_type == ToolType.PowerSupply)
                 {
                     print("R pos has PS: true");
-                    foreach (ElectronicComponent PS_pos in pos.positives)
+                    foreach (ElectronicComponent PS_neg in pos.negetives)
                     {
-                        if (PS_pos.tool_type == ToolType.Resistor)
+                        if (PS_neg.tool_type == ToolType.Resistor)
                         {
-                            print("PS pos has R: true");
+                            print("PS neg has R: true");
                             return false;
                         }
                     }
                 }
             }
         }
-        // R neg to PS neg => false
+        // R neg to PS pos => false
         if (negetives.Count >= 1)
         {
             foreach (ElectronicComponent neg in negetives)
@@ -43,9 +43,9 @@ public class ResistorManager : ElectronicComponent
                 if (neg.tool_type == ToolType.PowerSupply)
                 {
                     print("R neg has PS: true");
-                    foreach (ElectronicComponent PS_neg in neg.negetives)
+                    foreach (ElectronicComponent PS_pos in neg.positives)
                     {
-                        if (PS_neg.tool_type == ToolType.Resistor)
+                        if (PS_pos.tool_type == ToolType.Resistor)
                         {
                             print("PS neg has R: true");
                             return false;

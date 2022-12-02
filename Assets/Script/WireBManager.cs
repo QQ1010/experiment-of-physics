@@ -7,7 +7,19 @@ public class WireBManager : ElectronicComponent
     void Start()
     {
         tool_type = ToolType.WireB;
-        // TODO: modify different materials shoulld have different resister
+        resistance = 0.0008f;
+    }
+    public void OnMouseDrag()
+    {
+        CircuitManager cm = CircuitManager.instanse;
+        GameObject gaussmeter_o;
+        ElectronicComponent gaussmeter = null;
+        gaussmeter_o = cm.tools.Find(obj => obj.GetComponent<ElectronicComponent>().tool_type == ToolType.Gaussmeter);
+        if (gaussmeter_o != null)
+        {
+            gaussmeter = gaussmeter_o.GetComponent<ElectronicComponent>();
+            gaussmeter.gameObject.GetComponent<GaussmeterManager>().CaculateGauss();
+        }
     }
     public override bool CheckPlace()
     {
