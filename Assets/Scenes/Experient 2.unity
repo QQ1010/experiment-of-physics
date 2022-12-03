@@ -473,7 +473,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 394289245}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ToolBar, Assembly-CSharp
         m_MethodName: Reset
         m_Mode: 1
@@ -614,7 +614,7 @@ MonoBehaviour:
   - {fileID: 997177028627257874, guid: f94a4d585c11e2349984f9b205c4e7f8, type: 3}
   - {fileID: 5924191951147209541, guid: 6b9396a061c628d4ea436621ccbbae21, type: 3}
   - {fileID: 5924191951147209541, guid: 162140c01eaa76942bcaa45a2a6c3397, type: 3}
-  - {fileID: 5924191951147209541, guid: 4f8b3b17ebd48ba4298b85c3968d2cd7, type: 3}
+  - {fileID: 5924191951147209541, guid: 5999007c23efd0f499f8f604689ee670, type: 3}
 --- !u!1 &509990298
 GameObject:
   m_ObjectHideFlags: 0
@@ -1985,27 +1985,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1182923682}
-  - component: {fileID: 1182923679}
+  - component: {fileID: 1182923683}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: CircuitManager
   m_TagString: UI Canvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &1182923679
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1182923678}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1182923682
 Transform:
   m_ObjectHideFlags: 0
@@ -2021,6 +2008,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1182923683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1182923678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c7d5eff626fbd24787285b7d343772c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tools: []
 --- !u!1 &1196688559
 GameObject:
   m_ObjectHideFlags: 0

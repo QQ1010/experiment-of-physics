@@ -50,7 +50,7 @@ public class GaussmeterManager : ElectronicComponent
     {
         CaculateGauss();
     }
-    public override bool CheckPlace()
+    public override bool CheckPlace(bool from, bool to, ElectronicComponent component)
     {
         return true;
         //  check when to return true when to return false

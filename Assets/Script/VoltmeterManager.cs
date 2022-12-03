@@ -9,72 +9,51 @@ public class VoltmeterManager : ElectronicComponent
     {
         tool_type = ToolType.Voltmeter;
     }
-    public override bool CheckPlace()
+    public override bool CheckPlace(bool from, bool to, ElectronicComponent component)
     {
-        // check when to return true when to return false
-        if (positives.Count >= 1)
+        if (from)
         {
-            foreach(ElectronicComponent pos in positives)
+            switch (component.tool_type)
             {
-                switch (pos.tool_type)
-                {
-                    case ToolType.PowerSupply:
-                        foreach (ElectronicComponent PS_neg in pos.negetives)
-                        {
-                            if (PS_neg.tool_type == ToolType.Voltmeter)         // V pos to PS neg
-                            {
-                                return false;
-                            }
-                        }
-                        break;
-                    case ToolType.Voltmeter:                                    // V to V
-                        return false;
-                    case ToolType.Gaussmeter:
-                        return false;
-                    case ToolType.Ruler:
-                        return false;
-                    case ToolType.Ammeter:
-                        return false;
-                    case ToolType.WireA:
-                        return false;
-                    case ToolType.WireB:
-                        return false;
-                }
-                
+                case ToolType.Resistor:
+                    if (to) return true;
+                    break;
+                case ToolType.Ammeter:
+                    if (!to) return true;
+                    break;
+                case ToolType.PowerSupply:
+                    if (to) return true;
+                    break;
+                case ToolType.WireA:
+                    if (!to) return true;
+                    break;
+                case ToolType.WireB:
+                    if (!to) return true;
+                    break;
             }
         }
-        if (negetives.Count >= 1)
+        else if (!from)
         {
-            foreach (ElectronicComponent neg in negetives)
+            switch (component.tool_type)
             {
-                switch (neg.tool_type)
-                {
-                    case ToolType.PowerSupply:
-                        foreach (ElectronicComponent PS_pos in neg.positives)
-                        {
-                            if (PS_pos.tool_type == ToolType.Voltmeter)        // V neg to PS pos
-                            {
-                                return false;
-                            }
-                        }
-                        break;
-                    case ToolType.Voltmeter:                                   // V to V
-                        return false;
-                    case ToolType.Gaussmeter:
-                        return false;
-                    case ToolType.Ruler:
-                        return false;
-                    case ToolType.Ammeter:
-                        return false;
-                    case ToolType.WireA:
-                        return false;
-                    case ToolType.WireB:
-                        return false;
-                }
-                
+                case ToolType.Resistor:
+                    if (!to) return true;
+                    break;
+                case ToolType.Ammeter:
+                    if (to) return true;
+                    break;
+                case ToolType.PowerSupply:
+                    if (!to) return true;
+                    break;
+                case ToolType.WireA:
+                    if (to) return true;
+                    break;
+                case ToolType.WireB:
+                    if (to) return true;
+                    break;
             }
         }
-        return true;
+        return false;
         
     }
 }

@@ -23,51 +23,51 @@ public class WireAManager : ElectronicComponent
             gaussmeter.gameObject.GetComponent<GaussmeterManager>().CaculateGauss();
         }
     }
-    public override bool CheckPlace()
+    public override bool CheckPlace(bool from, bool to, ElectronicComponent component)
     {
-        if(positives.Count > 1 || negetives.Count > 1)
+        if (positives.Count > 1 || negetives.Count > 1) return false;
+        if (from)
         {
-            return false;
-        }
-        if(positives.Count == 1)
-        {
-            ElectronicComponent pos = positives[0];
-            switch (pos.tool_type)
+            switch (component.tool_type)
             {
-                case ToolType.PowerSupply:
-                    return false;
+                case ToolType.Resistor:
+                    if(!to) return true;
+                    break;
                 case ToolType.Voltmeter:
-                    return false;
-                case ToolType.Ruler:
-                    return false;
-                case ToolType.Gaussmeter:
-                    return false;
+                    if(!to) return true;
+                    break;
+                case ToolType.Ammeter:
+                    if(!to) return true;
+                    break;
+                case ToolType.PowerSupply:
+                    if(to) return true;
+                    break;
                 case ToolType.WireB:
-                    return false;
-                case ToolType.WireA:
-                    return false;
+                    if (!to) return true;
+                    break;
             }
         }
-        if(negetives.Count == 1)
+        else if (!from)
         {
-            ElectronicComponent neg = negetives[0];
-            switch (neg.tool_type)
+            switch (component.tool_type)
             {
-                case ToolType.PowerSupply:
-                    return false;
+                case ToolType.Resistor:
+                    if (to) return true;
+                    break;
                 case ToolType.Voltmeter:
-                    return false;
-                case ToolType.Ruler:
-                    return false;
-                case ToolType.Gaussmeter:
-                    return false;
+                    if (to) return true;
+                    break;
+                case ToolType.Ammeter:
+                    if (to) return true;
+                    break;
+                case ToolType.PowerSupply:
+                    if (!to) return true;
+                    break;
                 case ToolType.WireB:
-                    return false;
-                case ToolType.WireA:
-                    return false;
+                    if (to) return true;
+                    break;
             }
         }
-        return true;
-        // check when to return true when to return false
+        return false;
     }
 }

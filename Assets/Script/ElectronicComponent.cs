@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System;
 
 public enum ToolType
 {
@@ -116,7 +115,7 @@ public class ElectronicComponent : MonoBehaviour
         return true;
     }
 
-    public virtual bool CheckPlace()
+    public virtual bool CheckPlace(bool from, bool to, ElectronicComponent component)
     {
         return true;
     }
