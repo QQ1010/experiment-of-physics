@@ -7,53 +7,68 @@ public class WireBManager : ElectronicComponent
     void Start()
     {
         tool_type = ToolType.WireB;
-        // TODO: modify different materials shoulld have different resister
+        resistance = 0.0008f;
     }
-    public override bool CheckPlace()
+    public void OnMouseDrag()
+    {
+        CircuitManager cm = CircuitManager.instanse;
+        GameObject gaussmeter_o;
+        ElectronicComponent gaussmeter = null;
+        gaussmeter_o = cm.tools.Find(obj => obj.GetComponent<ElectronicComponent>().tool_type == ToolType.Gaussmeter);
+        if (gaussmeter_o != null)
+        {
+            gaussmeter = gaussmeter_o.GetComponent<ElectronicComponent>();
+            gaussmeter.gameObject.GetComponent<GaussmeterManager>().CaculateGauss();
+        }
+    }
+    public override bool CheckPlace(bool from, bool to, ElectronicComponent component)
     {
         if (positives.Count > 1 || negetives.Count > 1)
         {
             return false;
         }
-        if (positives.Count == 1)
+        if (from)
         {
-            ElectronicComponent pos = positives[0];
-            switch (pos.tool_type)
+            switch (component.tool_type)
             {
-                case ToolType.PowerSupply:
-                    return false;
+                case ToolType.Resistor:
+                    if (!to) return true;
+                    break;
                 case ToolType.Voltmeter:
-                    return false;
-                case ToolType.Ruler:
-                    return false;
-                case ToolType.Gaussmeter:
-                    return false;
-                case ToolType.WireB:
-                    return false;
+                    if (!to) return true;
+                    break;
+                case ToolType.Ammeter:
+                    if (!to) return true;
+                    break;
+                case ToolType.PowerSupply:
+                    if (to) return true;
+                    break;
                 case ToolType.WireA:
-                    return false;
+                    if (!to) return true;
+                    break;
             }
         }
-        if (negetives.Count == 1)
+        else if (!from)
         {
-            ElectronicComponent neg = negetives[0];
-            switch (neg.tool_type)
+            switch (component.tool_type)
             {
-                case ToolType.PowerSupply:
-                    return false;
+                case ToolType.Resistor:
+                    if (to) return true;
+                    break;
                 case ToolType.Voltmeter:
-                    return false;
-                case ToolType.Ruler:
-                    return false;
-                case ToolType.Gaussmeter:
-                    return false;
-                case ToolType.WireB:
-                    return false;
+                    if (to) return true;
+                    break;
+                case ToolType.Ammeter:
+                    if (to) return true;
+                    break;
+                case ToolType.PowerSupply:
+                    if (!to) return true;
+                    break;
                 case ToolType.WireA:
-                    return false;
+                    if (to) return true;
+                    break;
             }
         }
-        return true;
-        // check when to return true when to return false
+        return false;
     }
 }

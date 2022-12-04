@@ -109,7 +109,7 @@ public class ConnectObject : MonoBehaviour
         RaycastHit2D[] hits;
         int index = 0;
         bool find = false;           // positive to positive and negative to negative
-        bool connect;
+        bool connect = false ;
         hits = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
         if(hits.Length == 0)         // hit nothing
         {
@@ -127,48 +127,53 @@ public class ConnectObject : MonoBehaviour
                 {
                     break;
                 }
-                find = true;
-                hit.transform.gameObject.GetComponentInChildren<ConnectObject>().Connect(line);
-                end_point = new Vector3(hit.transform.position.x, hit.transform.position.y);
-                gameObject.GetComponentInParent<ElectronicComponent>().
-                    ConnectComponent(gameObject.tag == "positive", hit.transform.tag == "positive", hit.transform.gameObject.GetComponentInParent<ElectronicComponent>());
-                break;
+                // check connect whether correctly
+                print(gameObject.GetComponentInParent<ElectronicComponent>().tool_type);
+                //connect = true;
+                switch (gameObject.GetComponentInParent<ElectronicComponent>().tool_type)
+                {
+                    case ToolType.Ammeter:
+                        connect = gameObject.GetComponentInParent<AmmeterManager>().CheckPlace(gameObject.tag == "positive", hit.transform.tag == "positive", hit.transform.gameObject.GetComponentInParent<ElectronicComponent>());
+                        break;
+                    case ToolType.Voltmeter:
+                        connect = gameObject.GetComponentInParent<VoltmeterManager>().CheckPlace(gameObject.tag == "positive", hit.transform.tag == "positive", hit.transform.gameObject.GetComponentInParent<ElectronicComponent>());
+                        break;
+                    case ToolType.Resistor:
+                        connect = gameObject.GetComponentInParent<ResistorManager>().CheckPlace(gameObject.tag == "positive", hit.transform.tag == "positive", hit.transform.gameObject.GetComponentInParent<ElectronicComponent>());
+                        break;
+                    case ToolType.WireA:
+                        connect = gameObject.GetComponentInParent<WireAManager>().CheckPlace(gameObject.tag == "positive", hit.transform.tag == "positive", hit.transform.gameObject.GetComponentInParent<ElectronicComponent>());
+                        break;
+                    case ToolType.WireB:
+                        connect = gameObject.GetComponentInParent<WireBManager>().CheckPlace(gameObject.tag == "positive", hit.transform.tag == "positive", hit.transform.gameObject.GetComponentInParent<ElectronicComponent>());
+                        break;
+                    case ToolType.PowerSupply:
+                        connect = gameObject.GetComponentInParent<PowerSupplyMannager>().CheckPlace(gameObject.tag == "positive", hit.transform.tag == "positive", hit.transform.gameObject.GetComponentInParent<ElectronicComponent>());
+                        break;
+                    default:
+                        connect = false;
+                        break;
+                }
+                if (connect)
+                {
+                    find = true;
+                    hit.transform.gameObject.GetComponentInChildren<ConnectObject>().Connect(line);
+                    end_point = new Vector3(hit.transform.position.x, hit.transform.position.y);
+                    gameObject.GetComponentInParent<ElectronicComponent>().
+                        ConnectComponent(gameObject.tag == "positive", hit.transform.tag == "positive", hit.transform.gameObject.GetComponentInParent<ElectronicComponent>());
+                    break;
+                }
             }
             index += 1;
         }
-        // check connect whether correctly
-        print(gameObject.GetComponentInParent<ElectronicComponent>().tool_type);
-        switch (gameObject.GetComponentInParent<ElectronicComponent>().tool_type)
-        {
-            case ToolType.Ammeter:
-                connect = gameObject.GetComponentInParent<AmmeterManager>().CheckPlace();
-                break;
-            case ToolType.Voltmeter:
-                connect = gameObject.GetComponentInParent<VoltmeterManager>().CheckPlace();
-                break;
-            case ToolType.Resistor:
-                connect = gameObject.GetComponentInParent<ResistorManager>().CheckPlace();
-                break;
-            case ToolType.WireA:
-                connect = gameObject.GetComponentInParent<WireAManager>().CheckPlace();
-                break;
-            case ToolType.WireB:
-                connect = gameObject.GetComponentInParent<WireBManager>().CheckPlace();
-                break;
-            case ToolType.PowerSupply:
-                connect = gameObject.GetComponentInParent<PowerSupplyMannager>().CheckPlace();
-                break;
-            default:
-                connect = false;
-                break;
-        }
+        
         print("connect:" + connect);
-        if (find & !connect)
-        {
-            print("disconnect");
-            print(gameObject.GetComponentInParent<ElectronicComponent>().
-                    DisconnectComponent(gameObject.tag == "positive", hits[index].transform.tag == "positive", hits[index].transform.gameObject.GetComponentInParent<ElectronicComponent>()));
-        }
+        //if (find & !connect)
+        //{
+        //    print("disconnect");
+        //    print(gameObject.GetComponentInParent<ElectronicComponent>().
+        //            DisconnectComponent(gameObject.tag == "positive", hits[index].transform.tag == "positive", hits[index].transform.gameObject.GetComponentInParent<ElectronicComponent>()));
+        //}
         find &= connect;
         if (gameObject.tag == "negative" & find)
         {

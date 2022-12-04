@@ -20,89 +20,50 @@ public class PowerSupplyMannager : ElectronicComponent
         voltage -= unit;
         CircuitManager.CircuitUpdate();
     }
-    public override bool CheckPlace()
+    public override bool CheckPlace(bool from, bool to, ElectronicComponent component)
     {
-        if (positives.Count >= 1)
+        if (from)
         {
-            foreach (ElectronicComponent pos in positives)
+            switch (component.tool_type)
             {
-                switch (pos.tool_type)
-                {
-                    case ToolType.Ammeter:
-                        // PS pos to A neg => false
-                        foreach(ElectronicComponent A_neg in pos.negetives)
-                        {
-                            if (A_neg.tool_type == ToolType.PowerSupply) return false;
-                        }
-                        break;
-                    case ToolType.Voltmeter:
-                        // PS pos to V neg => false
-                        foreach(ElectronicComponent V_neg in pos.negetives)
-                        {
-                            if (V_neg.tool_type == ToolType.PowerSupply) return false;
-                        }
-                        break;
-                    case ToolType.Resistor:
-                        // PS pos to R pos => false
-                        foreach(ElectronicComponent R_pos in pos.positives)
-                        {
-                            if (R_pos.tool_type == ToolType.PowerSupply) return false;
-                        }
-                        break;
-                    case ToolType.Ruler:
-                        return false;
-                    case ToolType.WireA:
-                        return false;
-                    case ToolType.WireB:
-                        return false;
-                    case ToolType.Gaussmeter:
-                        return false;
-                    case ToolType.PowerSupply:
-                        return false;
-                }
+                case ToolType.Resistor:
+                    if (to) return true;
+                    break;
+                case ToolType.Voltmeter:
+                    if(to) return true;
+                    break;
+                case ToolType.Ammeter:
+                    if(to) return true;
+                    break;
+                case ToolType.WireA:
+                    if(to) return true;
+                    break;
+                case ToolType.WireB:
+                    if(to) return true;
+                    break;
             }
         }
-
-        if (negetives.Count >= 1)
+        else if (!from)
         {
-            foreach (ElectronicComponent neg in negetives)
+            switch (component.tool_type)
             {
-                switch (neg.tool_type)
-                {
-                    case ToolType.Ammeter:
-                        // PS neg to A pos => false
-                        foreach (ElectronicComponent A_pos in neg.positives)
-                        {
-                            if (A_pos.tool_type == ToolType.PowerSupply) return false;
-                        }
-                        break;
-                    case ToolType.Voltmeter:
-                        // PS neg to V pos => false
-                        foreach (ElectronicComponent V_pos in neg.positives)
-                        {
-                            if (V_pos.tool_type == ToolType.PowerSupply) return false;
-                        }
-                        break;
-                    case ToolType.Resistor:
-                        // PS neg to R neg => false
-                        foreach (ElectronicComponent R_neg in neg.negetives)
-                        {
-                            if (R_neg.tool_type == ToolType.PowerSupply) return false;
-                        }
-                        break;
-                    case ToolType.Ruler:
-                        return false;
-                    case ToolType.WireA:
-                        return false;
-                    case ToolType.WireB:
-                        return false;
-                    case ToolType.Gaussmeter:
-                        return false;
-                    case ToolType.PowerSupply:
-                        return false;
-                }
+                case ToolType.Resistor:
+                    if (!to) return true;
+                    break;
+                case ToolType.Voltmeter:
+                    if (!to) return true;
+                    break;
+                case ToolType.Ammeter:
+                    if (!to) return true;
+                    break;
+                case ToolType.WireA:
+                    if (!to) return true;
+                    break;
+                case ToolType.WireB:
+                    if (!to) return true;
+                    break;
             }
         }
-        return true;
+        return false;
     }
 }
