@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class WireAManager : ElectronicComponent
 {
+    public float length;
     [SerializeField] private float resistance_;
     void Start()
     {
@@ -16,12 +18,15 @@ public class WireAManager : ElectronicComponent
         CircuitManager cm = CircuitManager.instanse;
         GameObject gaussmeter_o;
         ElectronicComponent gaussmeter = null;
-        gaussmeter_o = cm.tools.Find(obj => obj.GetComponent<ElectronicComponent>().tool_type == ToolType.Gaussmeter);
-        if (gaussmeter_o != null)
-        {
-            gaussmeter = gaussmeter_o.GetComponent<ElectronicComponent>();
-            gaussmeter.gameObject.GetComponent<GaussmeterManager>().CaculateGauss();
-        }
+        try{
+            gaussmeter_o = cm.tools.Find(obj => obj.GetComponent<ElectronicComponent>().tool_type == ToolType.Gaussmeter);
+            if (gaussmeter_o != null)
+            {
+                gaussmeter = gaussmeter_o.GetComponent<ElectronicComponent>();
+                gaussmeter.gameObject.GetComponent<GaussmeterManager>().CaculateGauss();
+            }
+        }catch (Exception ex) {}
+    
     }
     public override bool CheckPlace(bool from, bool to, ElectronicComponent component)
     {

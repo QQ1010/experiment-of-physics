@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class CircuitManager : MonoBehaviour
 {
+    public const float PI = 3.1415926535897931f;
     static public CircuitManager instanse;
     public List<GameObject> tools = new List<GameObject>();
 
@@ -91,7 +93,7 @@ public class CircuitManager : MonoBehaviour
         }
 
 
-        cm.total_voltage_ = power_.voltage * Random.Range(cm.coefficient - cm.offset, cm.coefficient + cm.offset);
+        cm.total_voltage_ = power_.voltage * UnityEngine.Random.Range(cm.coefficient - cm.offset, cm.coefficient + cm.offset);
         if (resistor_)
         {
             resistor_.voltage = cm.total_voltage_;
@@ -114,14 +116,25 @@ public class CircuitManager : MonoBehaviour
         {
             wireB_.ampere = cm.total_ampere_ - wireB_.resistance;
         }
+        if(wireA_ && wireB_) {
+            
+            float d = wireA_.transform.position.y - wireB_.transform.position.y;
+            float L = ((WireAManager) wireA_).length;
+            wireA_.force = wireA_.ampere * wireB_.ampere * (float)(4 * PI * 1e-1 /(4 * PI * d * d)) * L;
+            wireB_.force = -wireA_.force;
+        }
         power_.ampere = cm.total_ampere_;
         GameObject gaussmeter_o;
-        gaussmeter_o = cm.tools.Find(obj => obj.GetComponent<ElectronicComponent>().tool_type == ToolType.Gaussmeter);
-        if (gaussmeter_o != null)
-        {
+        try{
+            gaussmeter_o = cm.tools.Find(obj => obj.GetComponent<ElectronicComponent>().tool_type == ToolType.Gaussmeter);
             gaussmeter = gaussmeter_o.GetComponent<ElectronicComponent>();
             gaussmeter.gameObject.GetComponent<GaussmeterManager>().CaculateGauss();
-        }
+        }catch(Exception e) {}
+        // if (gaussmeter_o != null)
+        // {
+        //     gaussmeter = gaussmeter_o.GetComponent<ElectronicComponent>();
+        //     gaussmeter.gameObject.GetComponent<GaussmeterManager>().CaculateGauss();
+        // }
         
     }
 }

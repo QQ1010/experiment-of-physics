@@ -58,6 +58,8 @@ public class ElectronicComponent : MonoBehaviour
     }
     public List<ElectronicComponent> positives = new List<ElectronicComponent>();
     public List<ElectronicComponent> negetives = new List<ElectronicComponent>();
+    public float mass;
+    public float force;
 
     private float voltage_;
     private float ampere_;

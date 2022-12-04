@@ -36,7 +36,7 @@ public class GaussmeterManager : ElectronicComponent
         {
             double r = Math.Abs(gameObject.transform.position.y - wire_.transform.position.y)/0.4;
             print(r);
-            double B = (Math.Pow(4 * PI, -1) / 2 * PI) * wire_.ampere / r;
+            double B = (4 * PI * 1e-1 / 2 * PI) * wire_.ampere / r;
             print(wire_.ampere);
             print(PI);
             print(B);
