@@ -1661,7 +1661,9 @@ MonoBehaviour:
   min_rotation: -4.5
   max_rotation: 9
   frame_length: 0.5
-  scale: 100
+  scale: 1
+  v: 0
+  f: 0.995
   wireA: {fileID: 253152207}
   wireB: {fileID: 983167728}
 --- !u!1 &350467788
