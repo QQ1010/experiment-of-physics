@@ -18,18 +18,30 @@ public class BalanceManager : MonoBehaviour
         float L = wireA.length;
         wireA.force = wireA.ampere * wireB.ampere * (float)(4 * PI * 1e-1 /(4 * PI * d * d)) * L;
         wireB.force = -wireA.force;
-        print(wireA.force + " " + (wireB.mass / 1000 * G));
+        // print(wireA.force + " " + (wireB.mass / 1000 * G));
         float F = wireA.force - (wireB.mass / 1000 * G);
         float v = (F / wireB.mass);
         float omega = v / frame_length;
         // print(omega);
         // print("x: " + transform.rotation.x);
-        if(transform.rotation.x > min_rotation && transform.rotation.x < max_rotation)
-            transform.Rotate(new Vector3(omega * Time.deltaTime * scale, 0, 0));
+        float delta_angle = omega * Time.deltaTime * scale;
+        float current_angleX = transform.localRotation.eulerAngles.x;
+        if(current_angleX > 180) {
+            current_angleX =  current_angleX - 360;
+        }
+        print(transform.localRotation.eulerAngles.x);
+
+        if(current_angleX + delta_angle >= min_rotation && current_angleX + delta_angle <= max_rotation)
+            transform.Rotate(new Vector3(delta_angle, 0, 0));
         else 
         {
             print("over angle");
-            transform.Rotate(Vector3.zero);
+            if(current_angleX > 0) {
+                transform.localRotation = Quaternion.Euler(new Vector3(max_rotation, 0, 0));
+            }
+            else {
+                transform.localRotation = Quaternion.Euler(new Vector3(min_rotation, 0, 0));
+            }
         }
     }
 }

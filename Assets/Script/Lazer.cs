@@ -37,7 +37,7 @@ public class Lazer : MonoBehaviour
             if(Physics.Raycast(second_ray, out hit, maxDistance))
             {
                 line.SetPosition(2, hit.point);
-                print(hit.point);
+                // print(hit.point);
                 if(hit.point.y > screen.max_y){
                     screen.line.SetPosition(0, new Vector3(screen.transform.position.x, hit.point.y, screen.transform.position.z));
                     screen.max_y = hit.point.y;
