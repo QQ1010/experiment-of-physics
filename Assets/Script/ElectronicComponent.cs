@@ -16,6 +16,7 @@ public enum ToolType
     Ruler
 }
 
+
 [System.Serializable]
 public class ElectronicComponent : MonoBehaviour
 {
@@ -60,6 +61,7 @@ public class ElectronicComponent : MonoBehaviour
     public List<ElectronicComponent> negetives = new List<ElectronicComponent>();
     public float mass;
     public float force;
+    public bool reserve;
 
     private float voltage_;
     private float ampere_;

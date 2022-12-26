@@ -145,7 +145,7 @@ public class ConnectObject : MonoBehaviour
                         connect = gameObject.GetComponentInParent<WireAManager>().CheckPlace(gameObject.tag == "positive", hit.transform.tag == "positive", hit.transform.gameObject.GetComponentInParent<ElectronicComponent>());
                         break;
                     case ToolType.WireB:
-                        connect = gameObject.GetComponentInParent<WireAManager>().CheckPlace(gameObject.tag == "positive", hit.transform.tag == "positive", hit.transform.gameObject.GetComponentInParent<ElectronicComponent>());
+                        connect = gameObject.GetComponentInParent<WireBManager>().CheckPlace(gameObject.tag == "positive", hit.transform.tag == "positive", hit.transform.gameObject.GetComponentInParent<ElectronicComponent>());
                         break;
                     case ToolType.PowerSupply:
                         connect = gameObject.GetComponentInParent<PowerSupplyMannager>().CheckPlace(gameObject.tag == "positive", hit.transform.tag == "positive", hit.transform.gameObject.GetComponentInParent<ElectronicComponent>());
@@ -154,6 +154,7 @@ public class ConnectObject : MonoBehaviour
                         connect = false;
                         break;
                 }
+                print(connect);
                 if (connect)
                 {
                     find = true;

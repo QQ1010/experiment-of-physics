@@ -36,6 +36,10 @@ public class WireAManager : ElectronicComponent
             switch (component.tool_type)
             {
                 case ToolType.Resistor:
+                    if(reserve == true)
+                    {
+                        if (to) return true;
+                    }
                     if(!to) return true;
                     break;
                 case ToolType.Voltmeter:
@@ -48,8 +52,17 @@ public class WireAManager : ElectronicComponent
                     if(to) return true;
                     break;
                 case ToolType.WireB:
-                    if (!to) return true;
-                    break;
+                    if (!to)
+                    {
+                        component.reserve = false;
+                        reserve = false;
+                    }
+                    if (to)
+                    {
+                        component.reserve = true;
+                        reserve = true;
+                    }
+                    return true;
             }
         }
         else if (!from)
@@ -57,6 +70,10 @@ public class WireAManager : ElectronicComponent
             switch (component.tool_type)
             {
                 case ToolType.Resistor:
+                    if (reserve == true)
+                    {
+                        if (!to) return true;
+                    }
                     if (to) return true;
                     break;
                 case ToolType.Voltmeter:
@@ -69,8 +86,17 @@ public class WireAManager : ElectronicComponent
                     if (!to) return true;
                     break;
                 case ToolType.WireB:
-                    if (to) return true;
-                    break;
+                    if (!to)
+                    {
+                        component.reserve = true;
+                        reserve = true;
+                    }
+                    if (to)
+                    {
+                        component.reserve = false;
+                        reserve = false;
+                    }
+                    return true;
             }
         }
         return false;

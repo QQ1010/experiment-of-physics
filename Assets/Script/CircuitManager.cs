@@ -29,7 +29,24 @@ public class CircuitManager : MonoBehaviour
                 to_power |= FindPath(child, visisted, in_circuit);
                 if(to_power)
                     in_circuit.Add(child);
-                
+            }
+        }
+        else if(node.tool_type == ToolType.WireA && node.reserve == true)
+        {
+            foreach (ElectronicComponent child in node.positives)
+            {
+                to_power |= FindPath(child, visisted, in_circuit);
+                if (to_power)
+                    in_circuit.Add(child);
+            }
+        }
+        else if(node.tool_type == ToolType.WireB && node.reserve == true)
+        {
+            foreach (ElectronicComponent child in node.positives)
+            {
+                to_power |= FindPath(child, visisted, in_circuit);
+                if (to_power)
+                    in_circuit.Add(child);
             }
         }
         else
@@ -37,7 +54,6 @@ public class CircuitManager : MonoBehaviour
             foreach(ElectronicComponent child in node.negetives)
             {
                 to_power |= FindPath(child, visisted, in_circuit);
-                ElectronicComponent to_add = to_power ? child : null;
                 if(to_power)
                     in_circuit.Add(child);
             }
@@ -117,11 +133,20 @@ public class CircuitManager : MonoBehaviour
             wireB_.ampere = cm.total_ampere_ - wireB_.resistance;
         }
         if(wireA_ && wireB_) {
-            
-            float d = wireA_.transform.position.y - wireB_.transform.position.y;
-            float L = ((WireAManager) wireA_).length;
-            wireA_.force = wireA_.ampere * wireB_.ampere * (float)(4 * PI * 1e-1 /(4 * PI * d * d)) * L;
-            wireB_.force = -wireA_.force;
+            if(wireA_.reserve == true)
+            {
+                float d = wireA_.transform.position.y - wireB_.transform.position.y;
+                float L = ((WireAManager)wireA_).length;
+                wireA_.force = wireA_.ampere * wireB_.ampere * (float)(4 * PI * 1e-1 / (4 * PI * d * d)) * L;
+                wireB_.force = -wireA_.force;
+            }
+            else
+            {
+                float d = wireA_.transform.position.y - wireB_.transform.position.y;
+                float L = ((WireAManager)wireA_).length;
+                wireA_.force = -(wireA_.ampere * wireB_.ampere * (float)(4 * PI * 1e-1 / (4 * PI * d * d)) * L);
+                wireB_.force = wireA_.force;
+            }
         }
         power_.ampere = cm.total_ampere_;
         GameObject gaussmeter_o;
@@ -130,11 +155,6 @@ public class CircuitManager : MonoBehaviour
             gaussmeter = gaussmeter_o.GetComponent<ElectronicComponent>();
             gaussmeter.gameObject.GetComponent<GaussmeterManager>().CaculateGauss();
         }catch(Exception e) {}
-        // if (gaussmeter_o != null)
-        // {
-        //     gaussmeter = gaussmeter_o.GetComponent<ElectronicComponent>();
-        //     gaussmeter.gameObject.GetComponent<GaussmeterManager>().CaculateGauss();
-        // }
         
     }
 }
