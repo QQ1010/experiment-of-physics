@@ -154,7 +154,6 @@ public class ConnectObject : MonoBehaviour
                         connect = false;
                         break;
                 }
-                print(connect);
                 if (connect)
                 {
                     find = true;
@@ -167,8 +166,6 @@ public class ConnectObject : MonoBehaviour
             }
             index += 1;
         }
-        
-        print("connect:" + connect);
         //if (find & !connect)
         //{
         //    print("disconnect");

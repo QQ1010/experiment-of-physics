@@ -61,7 +61,7 @@ public class ElectronicComponent : MonoBehaviour
     public List<ElectronicComponent> negetives = new List<ElectronicComponent>();
     public float mass;
     public float force;
-    public bool reserve;
+    public bool reverse;
 
     private float voltage_;
     private float ampere_;

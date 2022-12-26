@@ -30,8 +30,6 @@ public class WireBManager : ElectronicComponent
     }
     public override bool CheckPlace(bool from, bool to, ElectronicComponent component)
     {
-        print(from);
-        print(to);
         if (positives.Count > 1 || negetives.Count > 1)
         {
             return false;
@@ -41,7 +39,7 @@ public class WireBManager : ElectronicComponent
             switch (component.tool_type)
             {
                 case ToolType.Resistor:
-                    if (reserve == true)
+                    if (reverse == true)
                     {
                         if (to) return true;
                     }
@@ -59,13 +57,13 @@ public class WireBManager : ElectronicComponent
                 case ToolType.WireA:
                     if (!to)
                     {
-                        component.reserve = false;
-                        reserve = false;
+                        component.reverse = false;
+                        reverse = false;
                     }
                     if (to)
                     {
-                        component.reserve = true;
-                        reserve = true;
+                        component.reverse = true;
+                        reverse = true;
                     }
                     return true;
             }
@@ -75,7 +73,7 @@ public class WireBManager : ElectronicComponent
             switch (component.tool_type)
             {
                 case ToolType.Resistor:
-                    if (reserve == true)
+                    if (reverse == true)
                     {
                         if (!to) return true;
                     }
@@ -93,13 +91,14 @@ public class WireBManager : ElectronicComponent
                 case ToolType.WireA:
                     if (!to)
                     {
-                        component.reserve = true;
-                        reserve = true;
+                        component.reverse = true;
+                        reverse = true;
+                        print("change = " + reverse);
                     }
                     if (to)
                     {
-                        component.reserve = false;
-                        reserve = false;
+                        component.reverse = false;
+                        reverse = false;
                     }
                     return true;
             }

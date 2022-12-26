@@ -17,8 +17,12 @@ public class CircuitManager : MonoBehaviour
     {
         CircuitManager.instanse = this;
     }
+
+    // not work now
     private static bool FindPath(ElectronicComponent node, Dictionary<ElectronicComponent, bool> visisted, List<ElectronicComponent> in_circuit) 
     {
+        print("node = " + node);
+        print("reverse = " + node.reverse);
         if(visisted.ContainsKey(node) && visisted[node]) return node.tool_type == ToolType.PowerSupply;
         visisted.Add(node, true);
         bool to_power = false;
@@ -31,7 +35,7 @@ public class CircuitManager : MonoBehaviour
                     in_circuit.Add(child);
             }
         }
-        else if(node.tool_type == ToolType.WireA && node.reserve == true)
+        else if(node.tool_type == ToolType.WireA && node.reverse == true)
         {
             foreach (ElectronicComponent child in node.positives)
             {
@@ -40,7 +44,7 @@ public class CircuitManager : MonoBehaviour
                     in_circuit.Add(child);
             }
         }
-        else if(node.tool_type == ToolType.WireB && node.reserve == true)
+        else if(node.tool_type == ToolType.WireB && node.reverse == true)
         {
             foreach (ElectronicComponent child in node.positives)
             {
@@ -59,6 +63,7 @@ public class CircuitManager : MonoBehaviour
             }
         }
         visisted.Remove(node);
+        print(to_power);
         return to_power;
     }
     public static void CircuitUpdate()
@@ -133,7 +138,7 @@ public class CircuitManager : MonoBehaviour
             wireB_.ampere = cm.total_ampere_ - wireB_.resistance;
         }
         if(wireA_ && wireB_) {
-            if(wireA_.reserve == true)
+            if(wireA_.reverse == true)
             {
                 float d = wireA_.transform.position.y - wireB_.transform.position.y;
                 float L = ((WireAManager)wireA_).length;

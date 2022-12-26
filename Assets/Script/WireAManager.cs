@@ -36,11 +36,13 @@ public class WireAManager : ElectronicComponent
             switch (component.tool_type)
             {
                 case ToolType.Resistor:
-                    if(reserve == true)
+                    if (reverse == true)
                     {
-                        if (to) return true;
+                        if (to)
+                            return true;
                     }
-                    if(!to) return true;
+                    else if (!to)
+                        return true;
                     break;
                 case ToolType.Voltmeter:
                     if(!to) return true;
@@ -54,13 +56,13 @@ public class WireAManager : ElectronicComponent
                 case ToolType.WireB:
                     if (!to)
                     {
-                        component.reserve = false;
-                        reserve = false;
+                        component.reverse = false;
+                        reverse = false;
                     }
                     if (to)
                     {
-                        component.reserve = true;
-                        reserve = true;
+                        component.reverse = true;
+                        reverse = true;
                     }
                     return true;
             }
@@ -70,11 +72,13 @@ public class WireAManager : ElectronicComponent
             switch (component.tool_type)
             {
                 case ToolType.Resistor:
-                    if (reserve == true)
+                    if (reverse == true)
                     {
-                        if (!to) return true;
+                        if (!to)
+                            return true;
                     }
-                    if (to) return true;
+                    else if (to)
+                        return true;
                     break;
                 case ToolType.Voltmeter:
                     if (to) return true;
@@ -88,13 +92,13 @@ public class WireAManager : ElectronicComponent
                 case ToolType.WireB:
                     if (!to)
                     {
-                        component.reserve = true;
-                        reserve = true;
+                        component.reverse = true;
+                        reverse = true;
                     }
                     if (to)
                     {
-                        component.reserve = false;
-                        reserve = false;
+                        component.reverse = false;
+                        reverse = false;
                     }
                     return true;
             }
