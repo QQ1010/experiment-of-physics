@@ -190,4 +190,7 @@ public class ConnectObject : MonoBehaviour
         }
         return;
     }
+    public int countLine() {
+        return myLineList.Count;
+    }
 }

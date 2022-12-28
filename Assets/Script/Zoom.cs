@@ -6,9 +6,11 @@ public class Zoom : MonoBehaviour
 {
     [SerializeField] 
     private float ScrollSpeed = 10;
-    
+    private float CameraSpeed_X = 0.5f;
+    private float CameraSpeed_Y = 0.5f;
     private Camera Zoomcamera;
-    // Start is called before the first frame update
+    Vector3 Origin = new Vector3(0,1,-10);
+    
     void Start()
     {
         Zoomcamera = Camera.main;
@@ -20,10 +22,18 @@ public class Zoom : MonoBehaviour
         if(Zoomcamera.orthographic)
         {
             Zoomcamera.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * ScrollSpeed;
+            if (Zoomcamera.orthographicSize < 1)
+                Zoomcamera.orthographicSize = 1;
         }
         else
         {
             Zoomcamera.fieldOfView -= Input.GetAxis("Mouse ScrollWheel") * ScrollSpeed;
+        }
+        if(Input.GetMouseButton(1)) {
+            float dx = Input.GetAxis("Mouse X") * CameraSpeed_X;
+            float dy = Input.GetAxis("Mouse Y") * CameraSpeed_Y;
+            transform.position -= new Vector3(dx, dy, 0);
+
         }
     }
 

@@ -8,6 +8,10 @@ public class ResistorManager : ElectronicComponent
 {
     public float max_resistance = 10.1f;
     public float min_resistance = 0.1f;
+    public GameObject rightup_node;
+    public GameObject leftup_node;
+    public GameObject rightdown_node;
+    public GameObject leftdown_node;
     void Start()
     {
         tool_type = ToolType.Resistor;
