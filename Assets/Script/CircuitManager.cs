@@ -19,36 +19,40 @@ public class CircuitManager : MonoBehaviour
     }
 
     // not work now
-    private static bool FindPath(ElectronicComponent node, Dictionary<ElectronicComponent, bool> visisted, List<ElectronicComponent> in_circuit) 
+    private static bool FindPath(ElectronicComponent node, Dictionary<ElectronicComponent, bool> visisted, List<ElectronicComponent> in_circuit, bool pass) 
     {
-        print("node = " + node);
-        print("reverse = " + node.reverse);
-        if(visisted.ContainsKey(node) && visisted[node]) return node.tool_type == ToolType.PowerSupply;
+        print("node = " + node.tool_type);
+        //print("pass = " + pass);
+        if (visisted.ContainsKey(node) && visisted[node]) return node.tool_type == ToolType.PowerSupply;
         visisted.Add(node, true);
         bool to_power = false;
         if(node.tool_type == ToolType.PowerSupply)
         {
             foreach(ElectronicComponent child in node.positives)
             {
-                to_power |= FindPath(child, visisted, in_circuit);
+                to_power |= FindPath(child, visisted, in_circuit, pass);
                 if(to_power)
                     in_circuit.Add(child);
             }
         }
-        else if(node.tool_type == ToolType.WireA && node.reverse == true)
+        else if((node.tool_type == ToolType.WireA || node.tool_type == ToolType.WireB) && node.reverse == true && pass == false)
         {
-            foreach (ElectronicComponent child in node.positives)
+            //print("pass = first");
+            pass = true;
+            foreach (ElectronicComponent child in node.negetives)
             {
-                to_power |= FindPath(child, visisted, in_circuit);
+                to_power |= FindPath(child, visisted, in_circuit, pass);
                 if (to_power)
                     in_circuit.Add(child);
             }
         }
-        else if(node.tool_type == ToolType.WireB && node.reverse == true)
+        else if((node.tool_type == ToolType.WireA || node.tool_type == ToolType.WireB) && node.reverse == true && pass == true)
         {
+            pass = false;
             foreach (ElectronicComponent child in node.positives)
             {
-                to_power |= FindPath(child, visisted, in_circuit);
+                //print("child = " + child);
+                to_power |= FindPath(child, visisted, in_circuit, pass);
                 if (to_power)
                     in_circuit.Add(child);
             }
@@ -57,13 +61,13 @@ public class CircuitManager : MonoBehaviour
         {
             foreach(ElectronicComponent child in node.negetives)
             {
-                to_power |= FindPath(child, visisted, in_circuit);
+                to_power |= FindPath(child, visisted, in_circuit,pass);
                 if(to_power)
                     in_circuit.Add(child);
             }
         }
         visisted.Remove(node);
-        print(to_power);
+        //print("findpath = " + to_power);
         return to_power;
     }
     public static void CircuitUpdate()
@@ -84,7 +88,7 @@ public class CircuitManager : MonoBehaviour
         // find the circuit with dfs
         Dictionary<ElectronicComponent, bool> visited = new Dictionary<ElectronicComponent, bool>();
         List<ElectronicComponent> in_circuit = new List<ElectronicComponent>();
-        FindPath(power_, visited, in_circuit);
+        FindPath(power_, visited, in_circuit, false);
         foreach (ElectronicComponent component in in_circuit)
         {
             print(component.name);
@@ -138,7 +142,8 @@ public class CircuitManager : MonoBehaviour
             wireB_.ampere = cm.total_ampere_ - wireB_.resistance;
         }
         if(wireA_ && wireB_) {
-            if(wireA_.reverse == true)
+            print(wireA_.reverse);
+            if(wireA_.reverse == false)
             {
                 float d = wireA_.transform.position.y - wireB_.transform.position.y;
                 float L = ((WireAManager)wireA_).length;
