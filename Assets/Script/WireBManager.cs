@@ -7,6 +7,7 @@ public class WireBManager : ElectronicComponent
 {
     public float length;
     [SerializeField] private float resistance_;
+    [SerializeField] private GameObject pin1, pin2;
     void Start()
     {
         //tool_type = ToolType.WireB;
@@ -28,8 +29,19 @@ public class WireBManager : ElectronicComponent
         }
         catch (Exception ex) { }
     }
+    public void ShowPin()
+    {
+        pin1.SetActive(true);
+        pin2.SetActive(true);
+    }
+    public void UnShowPin()
+    {
+        pin1.SetActive(false);
+        pin2.SetActive(false);
+    }
     public override bool CheckPlace(bool from, bool to, ElectronicComponent component)
     {
+        print(component);
         if (positives.Count > 1 || negetives.Count > 1)
         {
             return false;

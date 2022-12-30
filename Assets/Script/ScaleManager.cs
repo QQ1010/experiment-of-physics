@@ -18,11 +18,25 @@ public class ScaleManager : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         item_collider = other;
         item = item_collider.GetComponent<ElectronicComponent>();
-        
+        if(item.tool_type == ToolType.WireA)
+        {
+            item.gameObject.GetComponent<WireAManager>().UnShowPin();
+        }
+        else if(item.tool_type == ToolType.WireB)
+        {
+            item.gameObject.GetComponent<WireBManager>().UnShowPin();
+        }
     }
     private void OnTriggerExit2D(Collider2D other) {
+        if (item.tool_type == ToolType.WireA)
+        {
+            item.gameObject.GetComponent<WireAManager>().ShowPin();
+        }
+        else if (item.tool_type == ToolType.WireB)
+        {
+            item.gameObject.GetComponent<WireBManager>().ShowPin();
+        }
         item_collider = null;
         item = null;
-        
     }
 }

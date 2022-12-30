@@ -7,6 +7,7 @@ public class WireAManager : ElectronicComponent
 {
     public float length;
     [SerializeField] private float resistance_;
+    [SerializeField] private GameObject pin1, pin2;
     void Start()
     {
         //tool_type = ToolType.WireA;
@@ -27,6 +28,16 @@ public class WireAManager : ElectronicComponent
             }
         }catch (Exception ex) {}
     
+    }
+    public void ShowPin()
+    {
+        pin1.SetActive(true);
+        pin2.SetActive(true);
+    }
+    public void UnShowPin()
+    {
+        pin1.SetActive(false);
+        pin2.SetActive(false);
     }
     public override bool CheckPlace(bool from, bool to, ElectronicComponent component)
     {

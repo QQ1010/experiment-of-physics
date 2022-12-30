@@ -17,8 +17,8 @@ public class ToolBar : MonoBehaviour
         // Create
         GameObject o = Instantiate(
              targetObject,
-             parentObject.transform.position,
-             parentObject.transform.rotation,
+             targetObject.transform.position,
+             targetObject.transform.rotation,
              parentObject.transform
         );
         CircuitManager.instanse.tools.Add(o);
