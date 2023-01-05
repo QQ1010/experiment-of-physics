@@ -6,37 +6,63 @@ using System;
 public class ScaleManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI wegith_text;
-    ElectronicComponent item = null;
-    Collider2D item_collider = null;
+    List<ElectronicComponent> items;
+    List<Collider2D> items_collider;
 
+    private void Start()
+    {
+        items_collider = new List<Collider2D>();
+        items = new List<ElectronicComponent>();
+    }
     void Update() {
-        if(item != null)
-            wegith_text.text = Math.Round(item.mass + item.force, 3).ToString();
+        float total_mass = 0.0f;
+        if (items.Count > 0)
+        {
+            foreach (ElectronicComponent e in items)
+            {
+                total_mass += e.mass + e.force;
+            }
+            if (total_mass < 0.0f)
+                total_mass = 0.0f;
+            wegith_text.text = Math.Round(total_mass, 3).ToString();
+        }
         else
             wegith_text.text = "0.0";
     }
     private void OnTriggerEnter2D(Collider2D other) {
-        item_collider = other;
-        item = item_collider.GetComponent<ElectronicComponent>();
-        if(item.tool_type == ToolType.WireA)
+        try
         {
-            item.gameObject.GetComponent<WireAManager>().UnShowPin();
+            ElectronicComponent item = other.GetComponent<ElectronicComponent>();
+            if (item == null) return;
+            items_collider.Add(other);
+            items.Add(item);
+            if (item.tool_type == ToolType.WireA)
+            {
+                item.gameObject.GetComponent<WireAManager>().UnShowPin();
+            }
+            else if (item.tool_type == ToolType.WireB)
+            {
+                item.gameObject.GetComponent<WireBManager>().UnShowPin();
+            }
         }
-        else if(item.tool_type == ToolType.WireB)
-        {
-            item.gameObject.GetComponent<WireBManager>().UnShowPin();
-        }
+        catch (Exception e) { }
     }
     private void OnTriggerExit2D(Collider2D other) {
-        if (item.tool_type == ToolType.WireA)
+        try
         {
-            item.gameObject.GetComponent<WireAManager>().ShowPin();
+            ElectronicComponent item = other.GetComponent<ElectronicComponent>();
+            if (item == null) return;
+            if (item.tool_type == ToolType.WireA)
+            {
+                item.gameObject.GetComponent<WireAManager>().ShowPin();
+            }
+            else if (item.tool_type == ToolType.WireB)
+            {
+                item.gameObject.GetComponent<WireBManager>().ShowPin();
+            }
+            items_collider.Remove(other);
+            items.Remove(item);
         }
-        else if (item.tool_type == ToolType.WireB)
-        {
-            item.gameObject.GetComponent<WireBManager>().ShowPin();
-        }
-        item_collider = null;
-        item = null;
+        catch (Exception e) { }
     }
 }

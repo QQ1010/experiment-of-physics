@@ -65,6 +65,12 @@ public class ObjectOnDrag : MonoBehaviour
         Vector3 CurPosition = Camera.main.ScreenToWorldPoint(CurScreenPoint) + offset;
         CurPosition.z = 0;
         drag_target_.transform.position = CurPosition;
+        ElectronicComponent tool = gameObject.GetComponent<ElectronicComponent>();
+        if(tool != null)
+        {
+            if(tool.tool_type == ToolType.WireA || tool.tool_type == ToolType.WireB)
+                CircuitManager.CircuitUpdate();
+        }
         // Update lines on the object
         ConnectObject[] posAndneg = drag_target_.GetComponentsInChildren<ConnectObject>();
         foreach(var o in posAndneg)
@@ -89,13 +95,13 @@ public class ObjectOnDrag : MonoBehaviour
         {
             //Debug.Log("Hit " + result.gameObject.name);
             //Debug.Log("Hit " + result.gameObject.tag);
-            if (result.gameObject.tag == "ToolBar")
-            {
-                CircuitManager.instanse.tools.Remove(gameObject);
-                Destroy(gameObject);
-                // LastOnFocusSpriteRenderers.Clear();
-                break;
-            }
+            //if (result.gameObject.tag == "ToolBar")
+            //{
+            //    CircuitManager.instanse.tools.Remove(gameObject);
+            //    Destroy(gameObject);
+            //    // LastOnFocusSpriteRenderers.Clear();
+            //    break;
+            //}
         }
     }
 

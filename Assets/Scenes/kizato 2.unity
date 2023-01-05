@@ -759,7 +759,7 @@ MonoBehaviour:
   - {fileID: 5924191951147209541, guid: 3844c37bb0793324ab6fa135e2d39824, type: 3}
   - {fileID: 997177028627257874, guid: f94a4d585c11e2349984f9b205c4e7f8, type: 3}
   - {fileID: 5924191951147209541, guid: 6b9396a061c628d4ea436621ccbbae21, type: 3}
-  - {fileID: 5924191951147209541, guid: 162140c01eaa76942bcaa45a2a6c3397, type: 3}
+  - {fileID: 5924191951147209541, guid: b0d55c1e429e5494c9d5e1598f5ec90f, type: 3}
   - {fileID: 5924191951147209541, guid: 5999007c23efd0f499f8f604689ee670, type: 3}
   - {fileID: 5924191951147209541, guid: faa702107d1239846b13627ca6417107, type: 3}
 --- !u!1 &429885179 stripped
@@ -1066,6 +1066,8 @@ MonoBehaviour:
   resistance_text_: {fileID: 0}
   length: 0.275
   resistance_: 0.0008
+  pin1: {fileID: 0}
+  pin2: {fileID: 0}
 --- !u!1 &824782082
 GameObject:
   m_ObjectHideFlags: 0
@@ -2853,7 +2855,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5621736451475900141, guid: 6b9396a061c628d4ea436621ccbbae21, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5621736451475900141, guid: 6b9396a061c628d4ea436621ccbbae21, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3241,7 +3243,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5621736451475900141, guid: 5999007c23efd0f499f8f604689ee670, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5621736451475900141, guid: 5999007c23efd0f499f8f604689ee670, type: 3}
       propertyPath: m_LocalPosition.x

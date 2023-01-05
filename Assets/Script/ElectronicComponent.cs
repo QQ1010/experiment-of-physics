@@ -60,7 +60,7 @@ public class ElectronicComponent : MonoBehaviour
     public List<ElectronicComponent> positives = new List<ElectronicComponent>();
     public List<ElectronicComponent> negetives = new List<ElectronicComponent>();
     public float mass;
-    public float force;
+    public float force = 0;
     public bool reverse;
 
     private float voltage_;
@@ -69,6 +69,27 @@ public class ElectronicComponent : MonoBehaviour
     [SerializeField] TextMeshProUGUI voltage_text_;
     [SerializeField] TextMeshProUGUI ampere_text_;
     [SerializeField] TextMeshProUGUI resistance_text_;
+
+    private void Start()
+    {
+        Init();
+    }
+    public void Init()
+    {
+        positives.Clear();
+        negetives.Clear();
+        force = 0;
+        reverse = false;
+
+        voltage_ = 0.0f;
+        ampere_ = 0.0f;
+        if(tool_type == ToolType.Resistor)
+            resistance_ = ((ResistorManager)this).min_resistance;
+        if(voltage_text_)
+            voltage_text_.text = "0.0";
+        if(ampere_text_)
+            ampere_text_.text = "0.0";
+    }
 
     public bool ConnectComponent(bool from, bool to, ElectronicComponent component)
     {

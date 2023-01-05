@@ -11,13 +11,16 @@ public class CircuitManager : MonoBehaviour
 
     private float total_voltage_;
     private float total_ampere_;
-    private float coefficient = 0.9987f;
+    private float coefficient = 0.99987f;
     private float offset = 0.0003f;
     void Start()
     {
         CircuitManager.instanse = this;
     }
-
+    private void Update()
+    {
+        //CircuitUpdate();
+    }
     // not work now
     private static bool FindPath(ElectronicComponent node, Dictionary<ElectronicComponent, bool> visisted, List<ElectronicComponent> in_circuit, bool pass) 
     {
@@ -143,12 +146,13 @@ public class CircuitManager : MonoBehaviour
         }
         if(wireA_ && wireB_) {
             print(wireA_.reverse);
-            if(wireA_.reverse == false)
+            if(wireA_.reverse == true)
             {
                 float d = wireA_.transform.position.y - wireB_.transform.position.y;
+                print(d);
                 float L = ((WireAManager)wireA_).length;
                 wireA_.force = wireA_.ampere * wireB_.ampere * (float)(4 * PI * 1e-1 / (4 * PI * d * d)) * L;
-                wireB_.force = -wireA_.force;
+                wireB_.force = wireA_.force;
             }
             else
             {

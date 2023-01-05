@@ -21,6 +21,7 @@ public class ToolBar : MonoBehaviour
              targetObject.transform.rotation,
              parentObject.transform
         );
+        o.GetComponent<ElectronicComponent>()?.Init();
         CircuitManager.instanse.tools.Add(o);
     }
 
