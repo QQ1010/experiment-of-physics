@@ -39,6 +39,7 @@ public class GaussmeterManager : ElectronicComponent
             double a = (13.3 / 2) / 0.4;
             double u = (4 * PI / 100);
             double B = (u * wire_.ampere * a * a) / (2*Math.Pow((a*a + R*R),3/2));
+            //double wire_r_pos = wire_.GetComponentsInChildren<ElectronicComponent>().
             print(wire_.ampere);
             print(PI);
             print(B);

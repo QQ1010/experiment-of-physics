@@ -21,13 +21,13 @@ public class RotateObj : MonoBehaviour
             if (hit.collider)
             {
                 print(hit.transform.name);
-                if (hit.transform.name == "RulerRotate1")
+                if (hit.transform.name == "RulerRotate1" && hit.transform.parent == transform)
                 {
                     button1 = true;
                     button2 = false;
                     rotate = true;
                 }
-                else if (hit.transform.name == "RulerRotate2")
+                else if (hit.transform.name == "RulerRotate2" && hit.transform.parent == transform)
                 {
                     button2 = true;
                     button1 = false;

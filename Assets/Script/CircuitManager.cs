@@ -83,7 +83,11 @@ public class CircuitManager : MonoBehaviour
         ElectronicComponent wireA_ = null;
         ElectronicComponent wireB_ = null;
         ElectronicComponent gaussmeter = null;
-        power_ = cm.tools.Find(obj => obj.GetComponent<ElectronicComponent>().tool_type == ToolType.PowerSupply).GetComponent<ElectronicComponent>();
+        try
+        {
+            power_ = cm.tools.Find(obj => obj.GetComponent<ElectronicComponent>().tool_type == ToolType.PowerSupply).GetComponent<ElectronicComponent>();
+        }
+        catch (Exception e) { }
 
         if (power_ == null)
             return;
