@@ -34,15 +34,14 @@ public class GaussmeterManager : ElectronicComponent
         }
         if (wire_ != null)
         {
-            double R = Math.Abs(gameObject.transform.position.y - wire_.transform.position.y)/0.4;
-            print(R);
-            double a = (13.3 / 2) / 0.4;
+            double unit = 0.4;
+            double R = Math.Abs(gameObject.transform.position.y - wire_.transform.position.y)/ unit;
+            double a = ((wire_.transform.GetChild(0).position.x - wire_.transform.GetChild(1).position.x) / 2) / unit;
             double u = (4 * PI / 100);
             double B = (u * wire_.ampere * a * a) / (2*Math.Pow((a*a + R*R),3/2));
-            //double wire_r_pos = wire_.GetComponentsInChildren<ElectronicComponent>().
-            print(wire_.ampere);
-            print(PI);
-            print(B);
+            //double wire_neg_x = wire_.transform.GetChild(0).position.x;
+            //double wire_pos_x = wire_.transform.GetChild(1).position.x;
+            print((wire_.transform.GetChild(0).position.x - wire_.transform.GetChild(1).position.x));
             gauss_text_.text = Math.Round(B, 3).ToString();
             return;
         }
