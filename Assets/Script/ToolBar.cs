@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ToolBar : MonoBehaviour
 {
@@ -31,7 +32,9 @@ public class ToolBar : MonoBehaviour
                  targetObject.transform.rotation,
                  parentObject.transform
             );
-            o.GetComponent<ElectronicComponent>()?.Init();
+            try{
+                o.GetComponent<ElectronicComponent>().Init();
+            }catch(Exception e) {}
             CircuitManager.instanse.tools.Add(o);
             exited[index] = true;
         }

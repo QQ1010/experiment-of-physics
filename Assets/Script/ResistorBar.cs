@@ -12,6 +12,7 @@ public class ResistorBar : MonoBehaviour
     public bool leftup_node;
     public bool rightdown_node;
     public bool leftdown_node;
+    bool hold = false;
     void Start()
     {
         resistor_ = gameObject.GetComponentInParent<ResistorManager>();
@@ -28,7 +29,21 @@ public class ResistorBar : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y);
         ScreenPoint = Camera.main.WorldToScreenPoint(transform.position);
         offset = transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
-        
+        hold = true;
+    }
+    void OnMouseUp() {
+        hold = false;
+        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+        sprite.color = Color.white;
+    }
+    void OnMouseEnter() {
+        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+        sprite.color = Color.yellow;
+    }
+    private void OnMouseExit() {
+        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+        if(!hold)
+            sprite.color = Color.white;
     }
     void OnMouseDrag()
     {
