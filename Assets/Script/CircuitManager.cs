@@ -21,6 +21,52 @@ public class CircuitManager : MonoBehaviour
     {
         //CircuitUpdate();
     }
+
+    private static bool FindPathv2(ElectronicComponent node, bool tag, List<ElectronicComponent> in_circuit, bool stop)
+    {
+        // go back to powersupply neg
+        if (node.tool_type == ToolType.PowerSupply && stop == true)
+        {
+            print("END");
+            return true;
+        }
+        bool to_power = false;
+        if(node.tool_type == ToolType.PowerSupply && tag == true)
+        {
+            stop = true;
+            for (int i = 0; i < node.positives.Count; i++)
+            {
+                //print(node.positives);
+                print(node.positives[i]);
+                print(!node.postag[i]);
+                to_power |= FindPathv2(node.positives[i], !node.postag[i], in_circuit, stop);
+                if (to_power) in_circuit.Add(node.positives[i]);
+            }
+        }
+        else if (tag == true)
+        {
+            for (int i = 0; i < node.positives.Count; i++)
+            {
+                //print(node.positives);
+                print(node.positives[i]);
+                print(node.postag[i]);
+                to_power |= FindPathv2(node.positives[i], !node.postag[i], in_circuit, stop);
+                if (to_power) in_circuit.Add(node.positives[i]);
+            }
+        }
+        else if (tag == false)
+        {
+            for (int i = 0; i < node.negetives.Count; i++)
+            {
+                print(node.negetives[i]);
+                print(node.negtag[i]);
+                to_power |= FindPathv2(node.negetives[i], !node.negtag[i], in_circuit, stop);
+                if (to_power) in_circuit.Add(node.negetives[i]);
+            }
+        }
+        //print(to_power);
+        return to_power;
+    }
     // not work now
     private static bool FindPath(ElectronicComponent node, Dictionary<ElectronicComponent, bool> visisted, List<ElectronicComponent> in_circuit, bool pass) 
     {
@@ -33,12 +79,13 @@ public class CircuitManager : MonoBehaviour
         {
             foreach(ElectronicComponent child in node.positives)
             {
+                //print(child);
                 to_power |= FindPath(child, visisted, in_circuit, pass);
-                if(to_power)
+                if (to_power)
                     in_circuit.Add(child);
             }
         }
-        else if((node.tool_type == ToolType.WireA || node.tool_type == ToolType.WireB) && node.reverse == true && pass == false)
+        else if ((node.tool_type == ToolType.WireA || node.tool_type == ToolType.WireB) && node.reverse == true && pass == false)
         {
             //print("pass = first");
             pass = true;
@@ -49,7 +96,7 @@ public class CircuitManager : MonoBehaviour
                     in_circuit.Add(child);
             }
         }
-        else if((node.tool_type == ToolType.WireA || node.tool_type == ToolType.WireB) && node.reverse == true && pass == true)
+        else if ((node.tool_type == ToolType.WireA || node.tool_type == ToolType.WireB) && node.reverse == true && pass == true)
         {
             pass = false;
             foreach (ElectronicComponent child in node.positives)
@@ -62,15 +109,15 @@ public class CircuitManager : MonoBehaviour
         }
         else
         {
-            foreach(ElectronicComponent child in node.negetives)
+            foreach (ElectronicComponent child in node.negetives)
             {
-                to_power |= FindPath(child, visisted, in_circuit,pass);
-                if(to_power)
+                to_power |= FindPath(child, visisted, in_circuit, pass);
+                if (to_power)
                     in_circuit.Add(child);
             }
         }
         visisted.Remove(node);
-        //print("findpath = " + to_power);
+        print("findpath = " + to_power);
         return to_power;
     }
     public static void CircuitUpdate()
@@ -95,7 +142,9 @@ public class CircuitManager : MonoBehaviour
         // find the circuit with dfs
         Dictionary<ElectronicComponent, bool> visited = new Dictionary<ElectronicComponent, bool>();
         List<ElectronicComponent> in_circuit = new List<ElectronicComponent>();
-        FindPath(power_, visited, in_circuit, false);
+        //FindPath(power_, visited, in_circuit, false);
+        FindPathv2(power_, true,in_circuit, false);
+        print("connect List");
         foreach (ElectronicComponent component in in_circuit)
         {
             print(component.name);

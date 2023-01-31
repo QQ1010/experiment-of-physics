@@ -51,12 +51,13 @@ public class WireBManager : ElectronicComponent
             switch (component.tool_type)
             {
                 case ToolType.Resistor:
-                    if (reverse == true)
-                    {
-                        if (to) return true;
-                    }
-                    else if (!to) return true;
-                    break;
+                    //if (reverse == true)
+                    //{
+                    //    if (to) return true;
+                    //}
+                    //else if (!to) return true;
+                    return true;
+                    //break;
                 case ToolType.Voltmeter:
                     if (!to) return true;
                     break;
@@ -67,16 +68,16 @@ public class WireBManager : ElectronicComponent
                     if (to) return true;
                     break;
                 case ToolType.WireA:
-                    if (!to)
-                    {
-                        component.reverse = false;
-                        reverse = false;
-                    }
-                    if (to)
-                    {
-                        component.reverse = true;
-                        reverse = true;
-                    }
+                    //if (!to)
+                    //{
+                    //    component.reverse = false;
+                    //    reverse = false;
+                    //}
+                    //if (to)
+                    //{
+                    //    component.reverse = true;
+                    //    reverse = true;
+                    //}
                     return true;
             }
         }
@@ -85,12 +86,13 @@ public class WireBManager : ElectronicComponent
             switch (component.tool_type)
             {
                 case ToolType.Resistor:
-                    if (reverse == true)
-                    {
-                        if (!to) return true;
-                    }
-                    else if (to) return true;
-                    break;
+                    //if (reverse == true)
+                    //{
+                    //    if (!to) return true;
+                    //}
+                    //else if (to) return true;
+                    //break;
+                    return true;
                 case ToolType.Voltmeter:
                     if (to) return true;
                     break;
@@ -101,17 +103,17 @@ public class WireBManager : ElectronicComponent
                     if (!to) return true;
                     break;
                 case ToolType.WireA:
-                    if (!to)
-                    {
-                        component.reverse = true;
-                        reverse = true;
-                        print("change = " + reverse);
-                    }
-                    if (to)
-                    {
-                        component.reverse = false;
-                        reverse = false;
-                    }
+                    //if (!to)
+                    //{
+                    //    component.reverse = true;
+                    //    reverse = true;
+                    //    print("change = " + reverse);
+                    //}
+                    //if (to)
+                    //{
+                    //    component.reverse = false;
+                    //    reverse = false;
+                    //}
                     return true;
             }
         }

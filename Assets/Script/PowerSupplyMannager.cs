@@ -36,11 +36,9 @@ public class PowerSupplyMannager : ElectronicComponent
                     if(to) return true;
                     break;
                 case ToolType.WireA:
-                    if(to) return true;
-                    break;
+                    return true;
                 case ToolType.WireB:
-                    if(to) return true;
-                    break;
+                    return true;
             }
         }
         else if (!from)
@@ -57,11 +55,9 @@ public class PowerSupplyMannager : ElectronicComponent
                     if (!to) return true;
                     break;
                 case ToolType.WireA:
-                    if (!to) return true;
-                    break;
+                    return true;
                 case ToolType.WireB:
-                    if (!to) return true;
-                    break;
+                    return true;
             }
         }
         return false;

@@ -41,7 +41,7 @@ public class GaussmeterManager : ElectronicComponent
             double B = (u * wire_.ampere * a * a) / (2*Math.Pow((a*a + R*R),3/2));
             //double wire_neg_x = wire_.transform.GetChild(0).position.x;
             //double wire_pos_x = wire_.transform.GetChild(1).position.x;
-            print((wire_.transform.GetChild(0).position.x - wire_.transform.GetChild(1).position.x));
+            //print((wire_.transform.GetChild(0).position.x - wire_.transform.GetChild(1).position.x));
             gauss_text_.text = Math.Round(B, 3).ToString();
             return;
         }
