@@ -11,7 +11,9 @@ public class WireAManager : ElectronicComponent
     void Start()
     {
         //tool_type = ToolType.WireA;
+        float unit = 0.433f * 100;
         resistance = resistance_;
+        length = (gameObject.transform.GetChild(0).position.x - gameObject.transform.GetChild(1).position.x) / unit;
     }
     // WRITE A ONDRAG call circuit update
     public void OnMouseDrag()

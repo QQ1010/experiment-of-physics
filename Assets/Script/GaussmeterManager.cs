@@ -34,7 +34,7 @@ public class GaussmeterManager : ElectronicComponent
         }
         if (wire_ != null)
         {
-            double unit = 0.4 * 100;
+            double unit = 0.433 * 100;
             // double R = Math.Abs(gameObject.transform.position.y - wire_.transform.position.y)/ unit;
             // double a = ((wire_.transform.GetChild(0).position.x - wire_.transform.GetChild(1).position.x) / 2) / unit;
             // double u = (4 * PI / 100);
@@ -45,9 +45,10 @@ public class GaussmeterManager : ElectronicComponent
             print(a);
             print(b);
             print(R);
+            print(a / Math.Sqrt(a * a + R * R) + b / Math.Sqrt(b * b + R * R));
             print(wire_.ampere);
-            double u = (4 * PI / 1000);
-            double B = (u / (4 * PI)) * wire_.ampere * (a / Math.Sqrt(a*a + R*R) + b / Math.Sqrt(b*b + R*R));
+            double u = (4 * PI / 10000);
+            double B = (u / (2 * PI)) * wire_.ampere * (a / Math.Sqrt(a*a + R*R) + b / Math.Sqrt(b*b + R*R)) / R;
             //double wire_neg_x = wire_.transform.GetChild(0).position.x;
             //double wire_pos_x = wire_.transform.GetChild(1).position.x;
             //print((wire_.transform.GetChild(0).position.x - wire_.transform.GetChild(1).position.x));

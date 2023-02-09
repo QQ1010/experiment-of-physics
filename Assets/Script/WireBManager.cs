@@ -11,6 +11,8 @@ public class WireBManager : ElectronicComponent
     void Start()
     {
         //tool_type = ToolType.WireB;
+        float unit =  0.433f * 100;
+        length = (gameObject.transform.GetChild(0).position.x - gameObject.transform.GetChild(1).position.x) / unit;
         resistance = resistance_;
     }
     public void OnMouseDrag()
