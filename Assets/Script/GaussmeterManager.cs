@@ -47,7 +47,7 @@ public class GaussmeterManager : ElectronicComponent
             print(R);
             print(wire_.ampere);
             double u = (4 * PI / 1000);
-            double B = (u / (4 * PI)) * wire_.ampere * (a / Math.Sqrt(a*a + R*R) + b / Math.Sqrt(b*b + R*R));
+            double B = (u / (2 * PI)) * wire_.ampere * (a / Math.Sqrt(a*a + R*R) + b / Math.Sqrt(b*b + R*R)) / R;
             //double wire_neg_x = wire_.transform.GetChild(0).position.x;
             //double wire_pos_x = wire_.transform.GetChild(1).position.x;
             //print((wire_.transform.GetChild(0).position.x - wire_.transform.GetChild(1).position.x));

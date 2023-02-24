@@ -16,7 +16,7 @@ public class ResistorBar : MonoBehaviour
     void Start()
     {
         resistor_ = gameObject.GetComponentInParent<ResistorManager>();
-        
+        ResistanceUpdate();
     }
     void Update() {
         rightup_node = resistor_.rightup_node.GetComponent<ConnectObject>().countLine() > 0;
@@ -56,6 +56,10 @@ public class ResistorBar : MonoBehaviour
             transform.localPosition = new Vector3(transform.localPosition.x, bar_offset , transform.localPosition.z);
         else if(transform.localPosition.y < -bar_offset) 
             transform.localPosition = new Vector3(transform.localPosition.x, -bar_offset, transform.localPosition.z);
+        ResistanceUpdate();
+        CircuitManager.CircuitUpdate();
+    }
+    void ResistanceUpdate() {
         if(rightup_node && leftdown_node){
             resistor_.resistance = resistor_.min_resistance + (resistor_.max_resistance - resistor_.min_resistance) * (transform.localPosition.y + bar_offset) / (2 * bar_offset);
         }
@@ -68,6 +72,5 @@ public class ResistorBar : MonoBehaviour
         else if(rightdown_node && leftdown_node) {
             resistor_.resistance = resistor_.max_resistance;
         }
-        CircuitManager.CircuitUpdate();
     }
 }
