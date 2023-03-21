@@ -64,7 +64,6 @@ public class CircuitManager : MonoBehaviour
                 if (to_power) in_circuit.Add(node.negetives[i]);
             }
         }
-        //print(to_power);
         return to_power;
     }
     // not work now

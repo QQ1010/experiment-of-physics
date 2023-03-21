@@ -25,20 +25,15 @@ public class ResistorManager : ElectronicComponent
             switch (component.tool_type)
             {
                 case ToolType.Voltmeter:
-                    if (to) return true;
-                    break;
+                    return true;
                 case ToolType.Ammeter:
-                    if(!to) return true;
-                    break;
+                    return true;
                 case ToolType.PowerSupply:
-                    if(to) return true;
-                    break;
+                    return true;
                 case ToolType.WireA:
-                    if(!to) return true;
-                    break;
+                    return true;
                 case ToolType.WireB:
-                    if(!to) return true;
-                    break;
+                    return true;
             }
         }
         else if (!from)
@@ -46,20 +41,15 @@ public class ResistorManager : ElectronicComponent
             switch (component.tool_type)
             {
                 case ToolType.Voltmeter:
-                    if(!to) return true;
-                    break;
+                    return true;
                 case ToolType.Ammeter:
-                    if(to) return true;
-                    break;
+                    return true;
                 case ToolType.PowerSupply:
-                    if(!to) return true;
-                    break;
+                    return true;
                 case ToolType.WireA:
-                    if(to) return true;
-                    break;
+                    return true;
                 case ToolType.WireB:
-                    if(to) return true;
-                    break;
+                    return true;
             }
         }
         return false;
