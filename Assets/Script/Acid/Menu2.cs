@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Menu : MonoBehaviour
+public class Menu2 : MonoBehaviour
 {
     public void OnStart(int ScenceIndex)
     {
-        if (ScenceIndex != 0 || ScenceIndex != 1 || ScenceIndex != 2 || ScenceIndex != 3)
+        if (ScenceIndex != 4 || ScenceIndex != 5)
         {
             Application.Quit();
         }

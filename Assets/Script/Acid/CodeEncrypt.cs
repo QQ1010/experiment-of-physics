@@ -60,8 +60,4 @@ public class CodeEncrypt : MonoBehaviour
         output_text.text = decrypt;
     }
 
-    public void test()
-    {
-        Manager.instance.volume += 100;
-    }
 }
