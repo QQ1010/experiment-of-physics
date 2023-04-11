@@ -7,13 +7,14 @@ using System.Security.Cryptography;
 using System.IO;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 
 public class CodeEncrypt : MonoBehaviour
 {
-    public TMP_InputField output_text;
-    private readonly string CryptoKey = "1234567890123456";
-    public void Encrypt(string SourceStr)
+    // public InputField output_text;
+    static private readonly string CryptoKey = "1234567890123456";
+    static public string Encrypt(string SourceStr)
     {
         string encrypt = "";
         AesCryptoServiceProvider aes = new AesCryptoServiceProvider();
@@ -32,10 +33,11 @@ public class CodeEncrypt : MonoBehaviour
             cs.FlushFinalBlock();
             encrypt = Convert.ToBase64String(ms.ToArray());
         }
-        print(encrypt);
-        output_text.text = encrypt;
+        return encrypt;
+        // print(encrypt);
+        // output_text.text = encrypt;
     }
-    public void Decrypt(string SourceStr)
+    static public string Decrypt(string SourceStr)
     {
         string decrypt = "";
         
@@ -57,7 +59,8 @@ public class CodeEncrypt : MonoBehaviour
                 decrypt = Encoding.UTF8.GetString(ms.ToArray());
             }
         }
-        output_text.text = decrypt;
+        return decrypt;
+        // output_text.text = decrypt;
     }
 
 }

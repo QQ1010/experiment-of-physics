@@ -12,8 +12,10 @@ public class Manager : MonoBehaviour
     public InputField titration_mole_text;
     public float titration_mole = 0.5f;
     public Text volume_text;
+    public LiquidData data = new LiquidData();
     private void Awake() {
-        instance = this;    
+        instance = this;
+        data = DataManager.data;
     }
 
     void Update()
@@ -22,16 +24,16 @@ public class Manager : MonoBehaviour
         titration_mole = float.Parse(titration_mole_text.text);
         switch (dropdown.options[dropdown.value].text)
         {
-            case "²B®ñ¤Æ¹[":
+            case "ï¿½Bï¿½ï¿½Æ¹[":
                 titration_solution = 0;
                 break;
-            case "²B®ñ¤Æ¶u":
+            case "ï¿½Bï¿½ï¿½Æ¶u":
                 titration_solution = 1;
                 break;
-            case "ÆQ»Ä":
+            case "ï¿½Qï¿½ï¿½":
                 titration_solution = 2;
                 break;
-            case "²¸»Ä":
+            case "ï¿½ï¿½ï¿½ï¿½":
                 titration_solution = 3;
                 break;
         }
