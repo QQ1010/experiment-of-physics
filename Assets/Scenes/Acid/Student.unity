@@ -152,16 +152,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d037bd5461ac61747b1c524c97ba37ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropdown: {fileID: 122772014}
-  volume: 0
-  titration_solution: 0
-  titration_mole_text: {fileID: 2120441642}
-  titration_mole: 0
-  volume_text: {fileID: 1692246747}
+  titrantion_dropdown: {fileID: 122772014}
   data:
     solution: 0
     concentration: 0
     volume: 0
+  titration_solution: 0
+  titration_concentration: 0.5
+  titration_concentration_text: {fileID: 2120441642}
+  volume: 0
+  volume_text: {fileID: 1692246747}
+  H_mole: 0
+  OH_mole: 0
+  PH: {fileID: 740441789}
 --- !u!4 &41690611
 Transform:
   m_ObjectHideFlags: 0
@@ -1016,15 +1019,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 969809508}
-        m_TargetAssemblyTypeName: StudentClickButton, Assembly-CSharp
-        m_MethodName: addone
-        m_Mode: 1
+      - m_Target: {fileID: 41690610}
+        m_TargetAssemblyTypeName: Manager, Assembly-CSharp
+        m_MethodName: addvolume
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
+          m_FloatArgument: 0.01
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -1468,15 +1471,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 969809508}
-        m_TargetAssemblyTypeName: StudentClickButton, Assembly-CSharp
-        m_MethodName: addhundred
-        m_Mode: 1
+      - m_Target: {fileID: 41690610}
+        m_TargetAssemblyTypeName: Manager, Assembly-CSharp
+        m_MethodName: addvolume
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
+          m_FloatArgument: 1
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -2632,15 +2635,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 969809508}
-        m_TargetAssemblyTypeName: StudentClickButton, Assembly-CSharp
-        m_MethodName: addten
-        m_Mode: 1
+      - m_Target: {fileID: 41690610}
+        m_TargetAssemblyTypeName: Manager, Assembly-CSharp
+        m_MethodName: addvolume
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
+          m_FloatArgument: 0.1
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
