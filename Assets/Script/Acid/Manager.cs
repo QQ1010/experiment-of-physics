@@ -16,7 +16,7 @@ public class Manager : MonoBehaviour
     public InputField titration_concentration_text;
     public Text volume_text;
     public Text PH;
-    public Image liquid_image;
+    [SerializeField] private GameObject pinkLiquid, nocolorLiquid;
     private void Awake()
     {
         instance = this;
@@ -26,7 +26,8 @@ public class Manager : MonoBehaviour
         SetupVolume();
         SetUpType();
         SetUpMole();
-    }
+        ChangeColor();
+        }
 
     public void addvolume(float add_volume)
     {
@@ -35,7 +36,8 @@ public class Manager : MonoBehaviour
 
         PH.text = Math.Round(liquid_A.pH, 4).ToString();
         print("pH = " + PH.text);
-    }
+        ChangeColor();
+        }
 
     public void SetupVolume()
     {
@@ -53,20 +55,27 @@ public class Manager : MonoBehaviour
     public void Reset()
     {
         liquid_A = DataManager.liquid_A;
-        volume_text.text = liquid_A.volume.ToString();
+        PH.text = Math.Round(liquid_A.pH, 4).ToString();
         titration_concentration_text.text = "0.5";
         titration_concentration = 0.5f;
-    }
+        SetupVolume();
+        SetUpType();
+        SetUpMole();
+        ChangeColor();
+        }
 
     public void ChangeColor()
     {
+        print(liquid_A.pH);
         if (liquid_A.pH < 8.3)
         {
-            liquid_image.color = Color.clear;
+            nocolorLiquid.SetActive(true);
+            pinkLiquid.SetActive(false);
         }
         else if (liquid_A.pH > 10)
         {
-            liquid_image.color = Color.magenta * 0.9f;
+            nocolorLiquid.SetActive(false);
+            pinkLiquid.SetActive(true);
         }
     }
 }
