@@ -5,16 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Electronic/Menu.unity
     guid: 39e4ae31152c24b40bdf3450be03c816
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Electronic/QQ.unity
     guid: 7c3d677eebadcfa44beee484cd1874a6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Electronic/Experient 2.unity
     guid: 4ac3e22f6935b5349b79a6d7f1eeca52
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Electronic/kizato 3.unity
     guid: b5a7bfd1f94a01440bcb058d676e75d5
   - enabled: 1

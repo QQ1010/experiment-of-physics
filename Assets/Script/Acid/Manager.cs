@@ -21,7 +21,7 @@ public class Manager : MonoBehaviour
     {
         instance = this;
         liquid_A = DataManager.liquid_A;
-        PH.text = Math.Round(liquid_A.pH, 4).ToString();
+        PH.text = Math.Round(liquid_A.pH, 2).ToString();
         liquid_B = new Liquid((LiquidType)titrantion_dropdown.value);
         SetupVolume();
         SetUpType();
@@ -32,9 +32,10 @@ public class Manager : MonoBehaviour
     public void addvolume(float add_volume)
     {
         liquid_B.volume = add_volume;
+        if (liquid_A.volume + liquid_B.volume > 250)
+            return;
         liquid_A += liquid_B;
-
-        PH.text = Math.Round(liquid_A.pH, 4).ToString();
+        PH.text = Math.Round(liquid_A.pH, 2).ToString();
         print("pH = " + PH.text);
         ChangeColor();
         }
@@ -55,7 +56,7 @@ public class Manager : MonoBehaviour
     public void Reset()
     {
         liquid_A = DataManager.liquid_A;
-        PH.text = Math.Round(liquid_A.pH, 4).ToString();
+        PH.text = Math.Round(liquid_A.pH, 2).ToString();
         titration_concentration_text.text = "0.5";
         titration_concentration = 0.5f;
         SetupVolume();

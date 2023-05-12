@@ -7,7 +7,7 @@ public class Menu2 : MonoBehaviour
 {
     public void OnStart(int ScenceIndex)
     {
-        if (ScenceIndex != 4 || ScenceIndex != 5)
+        if (ScenceIndex == -1)
         {
             Application.Quit();
         }

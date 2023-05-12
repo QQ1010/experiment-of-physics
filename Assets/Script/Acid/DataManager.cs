@@ -56,10 +56,10 @@ public class Liquid
         get {
             if(isAcid)
             {
-                return Math.Log10(1 / (Math.Abs(concentration) * constant));
+                return Math.Log10(1 / (Math.Abs(concentration) * constant + 1e-7));
             }
             else{
-                return 14-Math.Log10(1 / (Math.Abs(concentration) * constant));
+                return 14-Math.Log10(1 / (Math.Abs(concentration) * constant + 1e-7));
             }
         }
     }
@@ -85,6 +85,7 @@ public class Liquid
         double mix_H;
         double a_H = (a.volume/1000) * a.concentration * a.constant;
         double b_H = (b.volume/1000) * b.concentration * b.constant;
+        //if (b_H < 1e-7) b_H += 1e-7;
         if (!a.isAcid) a_H = -a_H;
         if(!b.isAcid) b_H = -b_H;
         mix_H = a_H + b_H;
@@ -94,14 +95,16 @@ public class Liquid
             mix = new Liquid(a);
             mix.constant = a.constant;
             mix.solution = a.solution;
-            mix_H += (a.isAcid) ? 1e-7 : -1e-7;
+            //if (Math.Abs(mix_H) < 1e-7)
+            //    mix_H += (a.isAcid) ? 1e-7 : -1e-7;
         }
         else
         {
             mix = new Liquid(b);
             mix.constant = b.constant;
             mix.solution = b.solution;
-            mix_H += (b.isAcid) ? 1e-7 : -1e-7;
+            //if (Math.Abs(mix_H) < 1e-7)
+            //    mix_H += (b.isAcid) ? 1e-7 : -1e-7;
         }
         Debug.Log(mix_H);
         Debug.Log(a_H);

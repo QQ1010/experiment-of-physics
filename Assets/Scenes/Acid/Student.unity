@@ -604,7 +604,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PH
+  m_Text: pH
 --- !u!222 &240606399
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2896,6 +2896,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 969809509}
+    - target: {fileID: 5334824681753391916, guid: 86738b811363b9848b71bb4717d28e78, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5334824681753391917, guid: 86738b811363b9848b71bb4717d28e78, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
