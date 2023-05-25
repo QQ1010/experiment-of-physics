@@ -1,29 +1,3 @@
-%YAML 1.1
-%TAG !u! tag:unity3d.com,2011:
---- !u!1045 &1
-EditorBuildSettings:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Electronic/Menu.unity
-    guid: 39e4ae31152c24b40bdf3450be03c816
-  - enabled: 0
-    path: Assets/Scenes/Electronic/QQ.unity
-    guid: 7c3d677eebadcfa44beee484cd1874a6
-  - enabled: 0
-    path: Assets/Scenes/Electronic/Experient 2.unity
-    guid: 4ac3e22f6935b5349b79a6d7f1eeca52
-  - enabled: 0
-    path: Assets/Scenes/Electronic/kizato 3.unity
-    guid: b5a7bfd1f94a01440bcb058d676e75d5
-  - enabled: 1
-    path: Assets/Scenes/Acid/Menu for Acid.unity
-    guid: 482259e22212a3d4ea9000637f1778c9
-  - enabled: 1
-    path: Assets/Scenes/Acid/Student.unity
-    guid: 3641ab2778b94bc4fa5c96700520d7e2
-  - enabled: 1
-    path: Assets/Scenes/Acid/Teacher.unity
-    guid: 2cbbeefd00a009944b82a9a61bdeffd4
-  m_configObjects: {}
+version https://git-lfs.github.com/spec/v1
+oid sha256:17556de328e9d52f08b6540e1bf98870c28d2e9c928c669acb4d34a372a3ed92
+size 891

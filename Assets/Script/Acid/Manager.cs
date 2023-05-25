@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using TMPro;
 
 
 public class Manager : MonoBehaviour
@@ -13,9 +14,9 @@ public class Manager : MonoBehaviour
     public Liquid liquid_B;
     public int titration_solution = 0;         // 0:KOH, 1: NaOH, 2:HCL 3:H2SO4
     public double titration_concentration = 0.5;
-    public InputField titration_concentration_text;
-    public Text volume_text;
-    public Text PH;
+    public TMP_InputField titration_concentration_text;
+    public TMP_Text volume_text;
+    public TMP_Text PH;
     [SerializeField] private GameObject pinkLiquid, nocolorLiquid;
     private void Awake()
     {

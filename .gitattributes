@@ -1,0 +1,2 @@
+*.asset filter=lfs diff=lfs merge=lfs -text
+Assets/TextMesh[[:space:]]Pro/Fonts/NotoSansMonoCJKtc-Regular[[:space:]]SDF.asset filter=lfs diff=lfs merge=lfs -text
