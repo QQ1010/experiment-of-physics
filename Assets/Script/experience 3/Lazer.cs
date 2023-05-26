@@ -7,7 +7,8 @@ public class Lazer : MonoBehaviour
     public Transform lazer_start;
     LineRenderer line;
     public ScreenManager screen;
-    public GameObject mark;
+    public GameObject init_mark;
+    public GameObject current_mark;
     float maxDistance = 100.0f;
 
     bool first_hit = true;
@@ -40,9 +41,10 @@ public class Lazer : MonoBehaviour
             if(Physics.Raycast(second_ray, out hit, maxDistance))
             {
                 line.SetPosition(2, hit.point);
+                current_mark.transform.position = hit.point;
                 if(first_hit)
                 {
-                    mark.transform.position = hit.point;
+                    init_mark.transform.position = hit.point;
                     first_hit = false;
                     //Instantiate(mark, hit.point, mark.transform.rotation, mark.transform.parent);
                 }

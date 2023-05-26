@@ -8,7 +8,7 @@ using TMPro;
 
 public class Manager : MonoBehaviour
 {
-    public Dropdown titrantion_dropdown;
+    public TMP_Dropdown titrantion_dropdown;
     public static Manager instance;
     public Liquid liquid_A;
     public Liquid liquid_B;

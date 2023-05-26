@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using UnityEngine.UI;
 using TMPro;
 using System;
 
@@ -11,6 +12,7 @@ public class PowerSupplyMannager3D : MonoBehaviour
     [SerializeField] TextMeshProUGUI ampere_text_2D;
     [SerializeField] TextMeshProUGUI voltage_text_3D;
     [SerializeField] TextMeshProUGUI ampere_text_3D;
+    [SerializeField] GameObject resistor_3D;
     [SerializeField] WireManager wireA;
     [SerializeField] WireManager wireB;
     private float coefficient = 0.9987f;
@@ -35,9 +37,15 @@ public class PowerSupplyMannager3D : MonoBehaviour
             ampere_text_3D.text = Math.Round(ampere_,3).ToString();
         }
     }
+    public float resistance
+    {
+        get { return resistance_; }
+        set
+        { resistance_ = value; }
+    }
     public float voltage_ = 0.0f;
     public float ampere_ = 0.0f;
-    public float resistance_;
+    public float resistance_ = 0.1f;
     public float unit = 0.5f;
 
     void Start() {
@@ -53,7 +61,11 @@ public class PowerSupplyMannager3D : MonoBehaviour
         voltage -= unit;
         CircuitUpdate();
     }
-
+    public void ResistanceUpdate(float value)
+    {
+        resistance = value * 10;
+        CircuitUpdate();
+    }
     public void CircuitUpdate() {
         float total_voltage_ = voltage * UnityEngine.Random.Range(coefficient - offset, coefficient + offset);
         float total_resistance = resistance_ + wireA.resistance + wireB.resistance;

@@ -1196,7 +1196,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &673045735
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1410,7 +1410,7 @@ PrefabInstance:
     - target: {fileID: 3697583473451530724, guid: 5468462f44390bd4bb4b0bccd2bfe318, type: 3}
       propertyPath: decrypt_input
       value: 
-      objectReference: {fileID: 2069287629}
+      objectReference: {fileID: 148307052}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5468462f44390bd4bb4b0bccd2bfe318, type: 3}
 --- !u!224 &841293101 stripped

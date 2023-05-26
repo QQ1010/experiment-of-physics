@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using TMPro;
 
 public class CodeButton : MonoBehaviour
 {
-    public Dropdown solution_o;
-    public InputField concentration_o;
-    public InputField volume_o;
-    public InputField output_text;
+    public TMP_Dropdown solution_o;
+    public TMP_InputField concentration_o;
+    public TMP_InputField volume_o;
+    public TMP_InputField output_text;
 
-    public InputField decrypt_input;
-    public InputField decrypt_output;
+    public TMP_InputField decrypt_input;
+    public TMP_InputField decrypt_output;
     private string source = "";
     public void GenerateCode()
     {
