@@ -10,6 +10,7 @@ public class PowerSupplyMannager3D : MonoBehaviour
     
     [SerializeField] TextMeshProUGUI voltage_text_2D;
     [SerializeField] TextMeshProUGUI ampere_text_2D;
+    [SerializeField] TextMeshProUGUI resistance_text_2D;
     [SerializeField] TextMeshProUGUI voltage_text_3D;
     [SerializeField] TextMeshProUGUI ampere_text_3D;
     [SerializeField] GameObject resistor_3D;
@@ -41,7 +42,10 @@ public class PowerSupplyMannager3D : MonoBehaviour
     {
         get { return resistance_; }
         set
-        { resistance_ = value; }
+        { 
+            resistance_ = value;
+            resistance_text_2D.text = Math.Round(resistance_,3).ToString();
+        }
     }
     public float voltage_ = 0.0f;
     public float ampere_ = 0.0f;
