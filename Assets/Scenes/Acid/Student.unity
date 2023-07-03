@@ -1535,11 +1535,11 @@ RectTransform:
   - {fileID: 435701132}
   - {fileID: 1610358001}
   - {fileID: 1859798503}
-  - {fileID: 8411721891793003418}
   - {fileID: 1407708059}
+  - {fileID: 8411721891793003418}
   - {fileID: 135737588}
-  - {fileID: 196858330599943028}
   - {fileID: 1566713175}
+  - {fileID: 196858330599943028}
   - {fileID: 2107300705}
   - {fileID: 1086946844}
   - {fileID: 1482400223}
@@ -2247,7 +2247,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 969809507}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2462,7 +2462,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 969809507}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4626,7 +4626,7 @@ PrefabInstance:
       objectReference: {fileID: 969809509}
     - target: {fileID: 5334824681753391916, guid: 86738b811363b9848b71bb4717d28e78, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5334824681753391917, guid: 86738b811363b9848b71bb4717d28e78, type: 3}
       propertyPath: m_Pivot.x
