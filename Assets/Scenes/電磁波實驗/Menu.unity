@@ -573,7 +573,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u5BE6\u9A57\u4E09: \u99D0\u6CE2\u5BE6\u9A57"
+  m_text: "\u5BE6\u9A57\u4E09: \u6298\u5C04\u5BE6\u9A57"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2181b33ebda386f49933ad0a249f2170, type: 2}
   m_sharedMaterial: {fileID: 6360830508532403664, guid: 2181b33ebda386f49933ad0a249f2170, type: 2}
@@ -943,7 +943,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_BackGroundColor: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1049,7 +1049,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u5BE6\u9A57\u4E00: \u53CD\u5C04\u5BE6\u9A57"
+  m_text: "\u5BE6\u9A57\u4E00: \u9EA5\u514B\u68EE\u5E72\u6D89\u5BE6\u9A57"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2181b33ebda386f49933ad0a249f2170, type: 2}
   m_sharedMaterial: {fileID: 6360830508532403664, guid: 2181b33ebda386f49933ad0a249f2170, type: 2}
@@ -2101,7 +2101,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u5BE6\u9A57\u4E8C: \u6298\u5C04\u5BE6\u9A57"
+  m_text: "\u5BE6\u9A57\u4E8C: \u53CD\u5C04\u5BE6\u9A57"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2181b33ebda386f49933ad0a249f2170, type: 2}
   m_sharedMaterial: {fileID: 6360830508532403664, guid: 2181b33ebda386f49933ad0a249f2170, type: 2}
