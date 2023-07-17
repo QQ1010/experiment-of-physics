@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 46968638}
   - component: {fileID: 46968637}
   - component: {fileID: 46968636}
+  - component: {fileID: 46968639}
   m_Layer: 5
   m_Name: Button1
   m_TagString: Untagged
@@ -207,9 +208,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1660434287}
+      - m_Target: {fileID: 46968639}
         m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
-        m_MethodName: ChangeTextButton1
+        m_MethodName: ChangeTextButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -257,6 +258,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 46968634}
   m_CullTransparentMesh: 1
+--- !u!114 &46968639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46968634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 496a9f258327e3b47919aab18807e553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button_text: {fileID: 981716146}
+  Button: {fileID: 46968636}
+  counter: 1
+  txt_true: "\u504F\u6975\u67F5 1: \u958B"
+  txt_false: "\u504F\u6975\u67F5 1: \u95DC"
 --- !u!1 &273813745
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,6 +799,7 @@ GameObject:
   - component: {fileID: 526771008}
   - component: {fileID: 526771007}
   - component: {fileID: 526771006}
+  - component: {fileID: 526771009}
   m_Layer: 5
   m_Name: Button2
   m_TagString: Untagged
@@ -853,9 +872,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1660434287}
+      - m_Target: {fileID: 526771009}
         m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
-        m_MethodName: ChangeTextButton2
+        m_MethodName: ChangeTextButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -903,6 +922,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 526771004}
   m_CullTransparentMesh: 1
+--- !u!114 &526771009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526771004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 496a9f258327e3b47919aab18807e553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button_text: {fileID: 970385306}
+  Button: {fileID: 526771006}
+  counter: 1
+  txt_true: "\u504F\u6975\u67F5 2: \u958B"
+  txt_false: "\u504F\u6975\u67F5 2: \u95DC"
 --- !u!1 &556675419
 GameObject:
   m_ObjectHideFlags: 0
@@ -2019,7 +2055,6 @@ GameObject:
   - component: {fileID: 1660434285}
   - component: {fileID: 1660434284}
   - component: {fileID: 1660434283}
-  - component: {fileID: 1660434287}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2118,24 +2153,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1660434287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1660434282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 496a9f258327e3b47919aab18807e553, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  button2_text: {fileID: 970385306}
-  Button2: {fileID: 526771006}
-  counter2: 0
-  button1_text: {fileID: 981716146}
-  Button1: {fileID: 46968636}
-  counter1: 0
 --- !u!1 &1756722232
 GameObject:
   m_ObjectHideFlags: 0
