@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -612,7 +612,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_BackGroundColor: {r: 0.62352943, g: 0.7529412, b: 0.63529414, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1301,6 +1301,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drag_target_: {fileID: 623465317}
   mode: 1
+  lock_pivot: {fileID: 0}
+  move_begin: 0
+  move_end: 0
 --- !u!1 &659260180
 GameObject:
   m_ObjectHideFlags: 0
@@ -2437,6 +2440,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drag_target_: {fileID: 857128805}
   mode: 0
+  lock_pivot: {fileID: 0}
+  move_begin: 0
+  move_end: 0
 --- !u!58 &1376342526
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2600,6 +2606,7 @@ GameObject:
   - component: {fileID: 1660434285}
   - component: {fileID: 1660434284}
   - component: {fileID: 1660434283}
+  - component: {fileID: 1660434287}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: UI Canvas
@@ -2710,12 +2717,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 496a9f258327e3b47919aab18807e553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button2_text: {fileID: 970385306}
-  Button2: {fileID: 526771006}
-  counter2: 0
-  button1_text: {fileID: 981716146}
-  Button1: {fileID: 46968636}
-  counter1: 0
+  button_text: {fileID: 0}
+  Button: {fileID: 0}
+  counter: 1
+  txt_true: 
+  txt_false: 
 --- !u!1 &1744941269
 GameObject:
   m_ObjectHideFlags: 0
@@ -2842,6 +2848,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drag_target_: {fileID: 1744941269}
   mode: 1
+  lock_pivot: {fileID: 0}
+  move_begin: 0
+  move_end: 0
 --- !u!1 &1756722232
 GameObject:
   m_ObjectHideFlags: 0
