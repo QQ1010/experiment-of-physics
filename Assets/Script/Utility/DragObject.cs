@@ -6,7 +6,9 @@ using UnityEngine.UI;
 
 public enum DragMode {
     Move,
-    Rotate
+    LockX,
+    LockY,
+    Rotate,
 }
 
 public class DragObject : MonoBehaviour
@@ -22,12 +24,16 @@ public class DragObject : MonoBehaviour
     PointerEventData m_PointerEventData;
     EventSystem m_EventSystem;
     public DragMode mode = DragMode.Move;
+    public Transform lock_pivot = null;
+    public float move_begin = 0.0f;
+    public float move_end = 0.0f;
     float start_degree;
     // public Transform rotate_center;
     void Start()
     {
         Canvas = GameObject.FindGameObjectWithTag("UI Canvas");
         m_Raycaster = Canvas.GetComponent<GraphicRaycaster>();
+        if(move_end < move_begin) (move_begin, move_end) = (move_end, move_begin);
         // ToolBar = GameObject.FindGameObjectsWithTag("ToolBar")[0];
         // m_Raycaster = ToolBar.GetComponentInParent<GraphicRaycaster>();
         //Fetch the Event System from the Scene
@@ -70,17 +76,41 @@ public class DragObject : MonoBehaviour
             case DragMode.Move:
                 drag_target_.transform.position = CurPosition;
                 break;
+            case DragMode.LockX:
+                CurPosition.x = drag_target_.transform.position.x;
+                if(lock_pivot){
+                    if(CurPosition.y - lock_pivot.position.y < move_begin) CurPosition.y = lock_pivot.position.y + move_begin;
+                    if(CurPosition.y - lock_pivot.position.y > move_end) CurPosition.y = lock_pivot.position.y + move_end;
+                }
+                else{
+                    if(CurPosition.y < move_begin) CurPosition.y = move_begin;
+                    if(CurPosition.y > move_end) CurPosition.y = move_end;
+                }
+                drag_target_.transform.position = CurPosition;
+                break;
+            case DragMode.LockY:
+                CurPosition.y = drag_target_.transform.position.y;
+                if(lock_pivot){
+                    if(CurPosition.x - lock_pivot.position.x < move_begin) CurPosition.x = lock_pivot.position.x + move_begin;
+                    if(CurPosition.x - lock_pivot.position.x > move_end) CurPosition.x = lock_pivot.position.x + move_end;
+                }
+                else{
+                    if(CurPosition.x < move_begin) CurPosition.x = move_begin;
+                    if(CurPosition.x > move_end) CurPosition.x = move_end;
+                }
+                drag_target_.transform.position = CurPosition;
+                break;
             case DragMode.Rotate:
                 Vector2 a = Camera.main.ScreenToWorldPoint(CurScreenPoint) - drag_target_.transform.position;
                 // Vector2 b = Camera.main.ScreenToWorldPoint(StartPoint) - drag_target_.transform.position;
                 Vector2 b = drag_target_.transform.rotation * Vector2.right;
-                print("a="+a);
-                print("b="+b);
+                // print("a="+a);
+                // print("b="+b);
                 float degree = Vector2.SignedAngle(a, b);
                 float to_rotate = drag_target_.transform.rotation.eulerAngles.z - degree - start_degree;
                 
-                print("vector angle:" + degree);
-                print("to rotate:" + to_rotate);
+                // print("vector angle:" + degree);
+                // print("to rotate:" + to_rotate);
                 // drag_target_.transform.Rotate(new Vector3(0,0,-to_rotate));
                 drag_target_.transform.Rotate(new Vector3(0,0,-degree));
 
